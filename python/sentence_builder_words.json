@@ -1,0 +1,409 @@
+[
+  {
+    "lt": "ar",
+    "tiles": [
+      "Ar"
+    ],
+    "audioFile": "ar.mp3"
+  },
+  {
+    "lt": "autobusas",
+    "tiles": [
+      "autobusas?"
+    ],
+    "audioFile": "autobusas.mp3"
+  },
+  {
+    "lt": "aš",
+    "tiles": [
+      "Aš"
+    ],
+    "audioFile": "aš.mp3"
+  },
+  {
+    "lt": "bus",
+    "tiles": [
+      "bus"
+    ],
+    "audioFile": "bus.mp3"
+  },
+  {
+    "lt": "dabar",
+    "tiles": [
+      "dabar"
+    ],
+    "audioFile": "dabar.mp3"
+  },
+  {
+    "lt": "darbą",
+    "tiles": [
+      "darbą"
+    ],
+    "audioFile": "darbą.mp3"
+  },
+  {
+    "lt": "duona",
+    "tiles": [
+      "duona"
+    ],
+    "audioFile": "duona.mp3"
+  },
+  {
+    "lt": "dvi",
+    "tiles": [
+      "dvi"
+    ],
+    "audioFile": "dvi.mp3"
+  },
+  {
+    "lt": "einu",
+    "tiles": [
+      "einu"
+    ],
+    "audioFile": "einu.mp3"
+  },
+  {
+    "lt": "esu",
+    "tiles": [
+      "esu"
+    ],
+    "audioFile": "esu.mp3"
+  },
+  {
+    "lt": "galiu",
+    "tiles": [
+      "galiu"
+    ],
+    "audioFile": "galiu.mp3"
+  },
+  {
+    "lt": "gauti",
+    "tiles": [
+      "gauti"
+    ],
+    "audioFile": "gauti.mp3"
+  },
+  {
+    "lt": "išjunk",
+    "tiles": [
+      "Išjunk"
+    ],
+    "audioFile": "išjunk.mp3"
+  },
+  {
+    "lt": "ji",
+    "tiles": [
+      "Ji"
+    ],
+    "audioFile": "ji.mp3"
+  },
+  {
+    "lt": "kada",
+    "tiles": [
+      "Kada"
+    ],
+    "audioFile": "kada.mp3"
+  },
+  {
+    "lt": "kaip",
+    "tiles": [
+      "kaip"
+    ],
+    "audioFile": "kaip.mp3"
+  },
+  {
+    "lt": "kambarį",
+    "tiles": [
+      "kambarį"
+    ],
+    "audioFile": "kambarį.mp3"
+  },
+  {
+    "lt": "katė",
+    "tiles": [
+      "Katė"
+    ],
+    "audioFile": "katė.mp3"
+  },
+  {
+    "lt": "kiek",
+    "tiles": [
+      "Kiek"
+    ],
+    "audioFile": "kiek.mp3"
+  },
+  {
+    "lt": "knygą",
+    "tiles": [
+      "knygą"
+    ],
+    "audioFile": "knygą.mp3"
+  },
+  {
+    "lt": "kur",
+    "tiles": [
+      "Kur"
+    ],
+    "audioFile": "kur.mp3"
+  },
+  {
+    "lt": "labai",
+    "tiles": [
+      "labai"
+    ],
+    "audioFile": "labai.mp3"
+  },
+  {
+    "lt": "labas",
+    "tiles": [
+      "Labas,"
+    ],
+    "audioFile": "labas.mp3"
+  },
+  {
+    "lt": "laimingas",
+    "tiles": [
+      "laimingas"
+    ],
+    "audioFile": "laimingas.mp3"
+  },
+  {
+    "lt": "man",
+    "tiles": [
+      "Man",
+      "man,"
+    ],
+    "audioFile": "man.mp3"
+  },
+  {
+    "lt": "mano",
+    "tiles": [
+      "Mano"
+    ],
+    "audioFile": "mano.mp3"
+  },
+  {
+    "lt": "mes",
+    "tiles": [
+      "Mes"
+    ],
+    "audioFile": "mes.mp3"
+  },
+  {
+    "lt": "miega",
+    "tiles": [
+      "miega"
+    ],
+    "audioFile": "miega.mp3"
+  },
+  {
+    "lt": "noriu",
+    "tiles": [
+      "noriu"
+    ],
+    "audioFile": "noriu.mp3"
+  },
+  {
+    "lt": "padėkite",
+    "tiles": [
+      "Padėkite"
+    ],
+    "audioFile": "padėkite.mp3"
+  },
+  {
+    "lt": "pasiklydau",
+    "tiles": [
+      "pasiklydau"
+    ],
+    "audioFile": "pasiklydau.mp3"
+  },
+  {
+    "lt": "pirmadienis",
+    "tiles": [
+      "pirmadienis"
+    ],
+    "audioFile": "pirmadienis.mp3"
+  },
+  {
+    "lt": "prašau",
+    "tiles": [
+      "prašau"
+    ],
+    "audioFile": "prašau.mp3"
+  },
+  {
+    "lt": "reikia",
+    "tiles": [
+      "reikia"
+    ],
+    "audioFile": "reikia.mp3"
+  },
+  {
+    "lt": "savo",
+    "tiles": [
+      "savo"
+    ],
+    "audioFile": "savo.mp3"
+  },
+  {
+    "lt": "sekasi",
+    "tiles": [
+      "sekasi?"
+    ],
+    "audioFile": "sekasi.mp3"
+  },
+  {
+    "lt": "seseris",
+    "tiles": [
+      "seseris"
+    ],
+    "audioFile": "seseris.mp3"
+  },
+  {
+    "lt": "simas",
+    "tiles": [
+      "Simas"
+    ],
+    "audioFile": "simas.mp3"
+  },
+  {
+    "lt": "skaito",
+    "tiles": [
+      "skaito"
+    ],
+    "audioFile": "skaito.mp3"
+  },
+  {
+    "lt": "sustokite",
+    "tiles": [
+      "Sustokite"
+    ],
+    "audioFile": "sustokite.mp3"
+  },
+  {
+    "lt": "sutvarkyk",
+    "tiles": [
+      "Sutvarkyk"
+    ],
+    "audioFile": "sutvarkyk.mp3"
+  },
+  {
+    "lt": "sąskaitą",
+    "tiles": [
+      "sąskaitą?"
+    ],
+    "audioFile": "sąskaitą.mp3"
+  },
+  {
+    "lt": "tau",
+    "tiles": [
+      "tau"
+    ],
+    "audioFile": "tau.mp3"
+  },
+  {
+    "lt": "televiziją",
+    "tiles": [
+      "televiziją"
+    ],
+    "audioFile": "televiziją.mp3"
+  },
+  {
+    "lt": "turiu",
+    "tiles": [
+      "turiu"
+    ],
+    "audioFile": "turiu.mp3"
+  },
+  {
+    "lt": "vaistinė",
+    "tiles": [
+      "vaistinė?"
+    ],
+    "audioFile": "vaistinė.mp3"
+  },
+  {
+    "lt": "valandų",
+    "tiles": [
+      "valandų?"
+    ],
+    "audioFile": "valandų.mp3"
+  },
+  {
+    "lt": "vardas",
+    "tiles": [
+      "vardas"
+    ],
+    "audioFile": "vardas.mp3"
+  },
+  {
+    "lt": "yra",
+    "tiles": [
+      "yra"
+    ],
+    "audioFile": "yra.mp3"
+  },
+  {
+    "lt": "čia",
+    "tiles": [
+      "čia,"
+    ],
+    "audioFile": "čia.mp3"
+  },
+  {
+    "lt": "į",
+    "tiles": [
+      "į"
+    ],
+    "audioFile": "į.mp3"
+  },
+  {
+    "lt": "šaltibarščių",
+    "tiles": [
+      "šaltibarščių"
+    ],
+    "audioFile": "šaltibarščių.mp3"
+  },
+  {
+    "lt": "ši",
+    "tiles": [
+      "Ši"
+    ],
+    "audioFile": "ši.mp3"
+  },
+  {
+    "lt": "šiandien",
+    "tiles": [
+      "Šiandien"
+    ],
+    "audioFile": "šiandien.mp3"
+  },
+  {
+    "lt": "šviesą",
+    "tiles": [
+      "šviesą,"
+    ],
+    "audioFile": "šviesą.mp3"
+  },
+  {
+    "lt": "šviežia",
+    "tiles": [
+      "šviežia"
+    ],
+    "audioFile": "šviežia.mp3"
+  },
+  {
+    "lt": "žemėlapio",
+    "tiles": [
+      "žemėlapio"
+    ],
+    "audioFile": "žemėlapio.mp3"
+  },
+  {
+    "lt": "žiūrime",
+    "tiles": [
+      "žiūrime"
+    ],
+    "audioFile": "žiūrime.mp3"
+  }
+]

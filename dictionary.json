@@ -1,0 +1,844 @@
+{
+  "sections": [
+    {
+      "sectionId": 1,
+      "topic": "Foundations & Greetings",
+      "levels": [
+        {
+          "levelId": 1,
+          "title": "Basic Greetings",
+          "words": [
+            {
+              "en": "Hello",
+              "lt": "Labas",
+              "audioHint": "Lah-bahs"
+            },
+            {
+              "en": "Good morning",
+              "lt": "Labas rytas",
+              "audioHint": "Lah-bahs ree-tahs"
+            },
+            {
+              "en": "Thank you",
+              "lt": "Ačiū",
+              "audioHint": "Ah-choo"
+            },
+            {
+              "en": "Please",
+              "lt": "Prašau",
+              "audioHint": "Prah-shau"
+            }
+          ],
+          "matching": [
+            {
+              "pairId": 1,
+              "en": "Yes",
+              "lt": "Taip"
+            },
+            {
+              "pairId": 2,
+              "en": "No",
+              "lt": "Ne"
+            },
+            {
+              "pairId": 3,
+              "en": "Goodbye",
+              "lt": "Viso gero"
+            }
+          ],
+          "sentences": [
+            {
+              "type": "completion",
+              "text": "Labas! Mano vardas _______ Simas.",
+              "translation": "Hello! My name is Simas.",
+              "missing": "yra",
+              "options": [
+                "yra",
+                "esu",
+                "buvo",
+                "būti"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "Kaip _______?",
+              "translation": "How are you?",
+              "missing": "tau",
+              "options": [
+                "tu",
+                "tau",
+                "jūs",
+                "jums"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "Labas _______, kaip sekasi?",
+              "missing": "rytas",
+              "translation": "Good morning, how is it going?",
+              "options": [
+                "vakaras",
+                "rytas",
+                "diena"
+              ]
+            },
+            {
+              "type": "sorting",
+              "correctOrder": [
+                "Ačiū",
+                "labai",
+                "jums"
+              ],
+              "scrambled": [
+                "jums",
+                "Ačiū",
+                "labai"
+              ],
+              "acceptedOrders": [["Ačiū", "jums", "labai"]],
+              "translation": "Thank you very much (to you)."
+            },
+            {
+              "type": "sorting",
+              "translation": "Goodbye! See you later!",
+              "scrambled": [
+                "Viso",
+                "gero!",
+                "Iki",
+                "greitai!"
+              ],
+              "correctOrder": [
+                "Viso",
+                "gero!",
+                "Iki",
+                "greitai!"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "_______ vakarą!",
+              "translation": "Good evening!",
+              "missing": "Labas",
+              "options": [
+                "Labas",
+                "Geras",
+                "Sveikas",
+                "Labą"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "I am fine, thank you.",
+              "scrambled": [
+                "gerai.",
+                "Ačiū,",
+                "man"
+              ],
+              "correctOrder": [
+                "Ačiū,",
+                "man",
+                "gerai."
+              ]
+            }
+          ]
+        },
+        {
+          "levelId": 2,
+          "title": "Introductions",
+          "words": [
+            {
+              "en": "Name",
+              "lt": "Vardas"
+            },
+            {
+              "en": "Surname",
+              "lt": "Pavardė"
+            }
+          ],
+          "sentences": [
+            {
+              "type": "completion",
+              "text": "Mano _______ yra Jonas.",
+              "missing": "vardas",
+              "translation": "My name is Jonas.",
+              "options": [
+                "vardas",
+                "labas",
+                "taip"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "Ačiū _______ pagalba!",
+              "translation": "Thank you for help!",
+              "missing": "už",
+              "options": [
+                "už",
+                "su",
+                "nuo",
+                "prie"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "Excuse me, please.",
+              "scrambled": [
+                "Atsiprašau",
+                "prašau"
+              ],
+              "correctOrder": [
+                "Atsiprašau",
+                "prašau"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "Mano _______ yra Petrauskas.",
+              "translation": "My surname is Petrauskas.",
+              "missing": "pavardė",
+              "options": [
+                "pavardė",
+                "vardas",
+                "miestas",
+                "namas"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "What is your name?",
+              "scrambled": [
+                "tavo",
+                "Koks",
+                "vardas?"
+              ],
+              "correctOrder": [
+                "Koks",
+                "tavo",
+                "vardas?"
+              ]
+            }
+          ]
+        },
+        {
+          "levelId": 3,
+          "title": "Polite Phrases",
+          "sentences": [
+            {
+              "type": "completion",
+              "text": "_______, kur yra bankas?",
+              "translation": "Excuse me, where is the bank?",
+              "missing": "Atsiprašau",
+              "options": [
+                "Atsiprašau",
+                "Prašau",
+                "Ačiū",
+                "Labas"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "I am sorry, I don't understand.",
+              "scrambled": [
+                "nesuprantu",
+                "Atsiprašau,",
+                "aš"
+              ],
+              "correctOrder": [
+                "Atsiprašau,",
+                "aš",
+                "nesuprantu"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "Nėra už _______.",
+              "translation": "You are welcome (No problem).",
+              "missing": "ką",
+              "options": [
+                "ką",
+                "tas",
+                "tai",
+                "čia"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "I do not know.",
+              "scrambled": [
+                "nežinau.",
+                "Aš"
+              ],
+              "correctOrder": [
+                "Aš",
+                "nežinau."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": 2,
+      "topic": "Numbers & Time",
+      "levels": [
+        {
+          "levelId": 1,
+          "title": "Numbers 1-10",
+          "sentences": [
+            {
+              "type": "completion",
+              "text": "Vienas, du, _______ - trys.",
+              "translation": "One, two, three.",
+              "missing": "trys",
+              "options": [
+                "trys",
+                "keturi",
+                "penki",
+                "šeši"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "I have five apples.",
+              "scrambled": [
+                "Aš",
+                "turiu",
+                "penkis",
+                "obuolius"
+              ],
+              "correctOrder": [
+                "Aš",
+                "turiu",
+                "penkis",
+                "obuolius"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "Kiek tai _______?",
+              "translation": "How much does it cost?",
+              "missing": "kainuoja",
+              "options": [
+                "kainuoja",
+                "yra",
+                "turi",
+                "perka"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "I have two sisters.",
+              "scrambled": [
+                "turiu",
+                "Aš",
+                "dvi",
+                "seseris"
+              ],
+              "correctOrder": [
+                "Aš",
+                "turiu",
+                "dvi",
+                "seseris"
+              ]
+            }
+          ]
+        },
+        {
+          "levelId": 2,
+          "title": "Telling Time",
+          "sentences": [
+            {
+              "type": "completion",
+              "text": "Dabar yra _______ valanda.",
+              "translation": "Now it is five o'clock.",
+              "missing": "penkta",
+              "options": [
+                "penkta",
+                "penki",
+                "penkias",
+                "penketas"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "What time is it?",
+              "scrambled": [
+                "Kiek",
+                "valandų?",
+                "dabar"
+              ],
+              "correctOrder": [
+                "Kiek",
+                "dabar",
+                "valandų?"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "Susitikime _______ valandą.",
+              "translation": "Let's meet at two o'clock.",
+              "missing": "antrą",
+              "options": [
+                "antrą",
+                "du",
+                "dvi",
+                "antras"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "Today is Monday.",
+              "scrambled": [
+                "pirmadienis.",
+                "yra",
+                "Šiandien"
+              ],
+              "correctOrder": [
+                "Šiandien",
+                "yra",
+                "pirmadienis."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": 3,
+      "topic": "Survival & Directions",
+      "levels": [
+        {
+          "levelId": 1,
+          "title": "Asking Where",
+          "sentences": [
+            {
+              "type": "sorting",
+              "correctOrder": [
+                "Kur",
+                "yra",
+                "tualetas?"
+              ],
+              "scrambled": [
+                "yra",
+                "tualetas?",
+                "Kur"
+              ],
+              "translation": "Where is the toilet?"
+            },
+            {
+              "type": "completion",
+              "text": "Eikite _______.",
+              "translation": "Go straight.",
+              "missing": "tiesiai",
+              "options": [
+                "tiesiai",
+                "į kairę",
+                "į dešinę",
+                "atgal"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "Kur yra autobusų _______?",
+              "translation": "Where is the bus stop?",
+              "missing": "stotelė",
+              "options": [
+                "stotelė",
+                "stotis",
+                "kelias",
+                "namas"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "Turn to the right.",
+              "scrambled": [
+                "į",
+                "Sukite",
+                "dešinę."
+              ],
+              "correctOrder": [
+                "Sukite",
+                "į",
+                "dešinę."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": 4,
+      "topic": "The Baltic Table (Food)",
+      "levels": [
+        {
+          "levelId": 1,
+          "title": "At the Restaurant",
+          "sentences": [
+            {
+              "type": "sorting",
+              "translation": "I would like coffee, please.",
+              "scrambled": [
+                "kavos,",
+                "prašau",
+                "norėčiau",
+                "Aš"
+              ],
+              "correctOrder": [
+                "Aš",
+                "norėčiau",
+                "kavos,",
+                "prašau"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "Sąskaitą, _______.",
+              "translation": "The bill, please.",
+              "missing": "prašau",
+              "options": [
+                "prašau",
+                "ačiū",
+                "labas",
+                "atsiprašau"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "Norėčiau stiklinės _______.",
+              "translation": "I would like a glass of water.",
+              "missing": "vandens",
+              "options": [
+                "vandens",
+                "kavos",
+                "sulčių",
+                "pieno"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "The food is very delicious.",
+              "scrambled": [
+                "labai",
+                "Maistas",
+                "skanus.",
+                "yra"
+              ],
+              "correctOrder": [
+                "Maistas",
+                "yra",
+                "labai",
+                "skanus."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": 5,
+      "topic": "On the Move (Travel)",
+      "levels": [
+        {
+          "levelId": 1,
+          "title": "At the Station",
+          "sentences": [
+            {
+              "type": "completion",
+              "text": "Vieną _______ į Vilnių.",
+              "translation": "One ticket to Vilnius.",
+              "missing": "bilietą",
+              "options": [
+                "bilietą",
+                "kavą",
+                "vandenį",
+                "duoną"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "When does the train leave?",
+              "scrambled": [
+                "išvyksta",
+                "traukinys?",
+                "Kada"
+              ],
+              "correctOrder": [
+                "Kada",
+                "išvyksta",
+                "traukinys?"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "Kur yra oro _______?",
+              "translation": "Where is the airport?",
+              "missing": "uostas",
+              "options": [
+                "uostas",
+                "stotis",
+                "kelias",
+                "takas"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "I am traveling to Kaunas.",
+              "scrambled": [
+                "į",
+                "keliauju",
+                "Aš",
+                "Kauną."
+              ],
+              "correctOrder": [
+                "Aš",
+                "keliauju",
+                "į",
+                "Kauną."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": 6,
+      "topic": "Daily Life",
+      "levels": [
+        {
+          "levelId": 1,
+          "title": "Hobbies",
+          "sentences": [
+            {
+              "type": "sorting",
+              "translation": "I like to read books.",
+              "scrambled": [
+                "skaityti",
+                "knygas",
+                "mėgstu",
+                "Aš"
+              ],
+              "correctOrder": [
+                "Aš",
+                "mėgstu",
+                "skaityti",
+                "knygas"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "Mėgstu _______ krepšinį.",
+              "translation": "I like playing basketball.",
+              "missing": "žaisti",
+              "options": [
+                "žaisti",
+                "žiūrėti",
+                "eiti",
+                "bėgti"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "What do you like to do?",
+              "scrambled": [
+                "mėgsti",
+                "Ką",
+                "veikti?",
+                "tu"
+              ],
+              "correctOrder": [
+                "Ką",
+                "tu",
+                "mėgsti",
+                "veikti?"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": 7,
+      "topic": "Around the Home",
+      "levels": [
+        {
+          "levelId": 1,
+          "title": "Rooms & Spaces",
+          "sentences": [
+            {
+              "type": "completion",
+              "text": "Mano _______ yra didelė.",
+              "translation": "My room is big.",
+              "missing": "virtuvė",
+              "options": [
+                "virtuvė",
+                "stalas",
+                "namas",
+                "langas"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "I live in a small house.",
+              "scrambled": [
+                "gyvenu",
+                "Aš",
+                "mažame",
+                "name"
+              ],
+              "correctOrder": [
+                "Aš",
+                "gyvenu",
+                "mažame",
+                "name"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "Einu į _______.",
+              "translation": "I am going to the bedroom.",
+              "missing": "miegamąjį",
+              "options": [
+                "miegamąjį",
+                "vonios",
+                "kiemą",
+                "garažą"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "The window is open.",
+              "scrambled": [
+                "yra",
+                "Langas",
+                "atidarytas."
+              ],
+              "correctOrder": [
+                "Langas",
+                "yra",
+                "atidarytas."
+              ]
+            }
+          ]
+        },
+        {
+          "levelId": 2,
+          "title": "Basic Furniture",
+          "sentences": [
+            {
+              "type": "completion",
+              "text": "Knyga yra ant _______.",
+              "translation": "The book is on the table.",
+              "missing": "stalo",
+              "options": [
+                "stalo",
+                "kėdės",
+                "lovos",
+                "grindų"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "Where is the key?",
+              "scrambled": [
+                "Kur",
+                "raktas?",
+                "yra"
+              ],
+              "correctOrder": [
+                "Kur",
+                "yra",
+                "raktas?"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "Sėdžiu ant _______.",
+              "translation": "I am sitting on the sofa.",
+              "missing": "sofos",
+              "options": [
+                "sofos",
+                "kėdės",
+                "stalo",
+                "grindų"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "The lamp is bright.",
+              "scrambled": [
+                "ryški.",
+                "Lempa",
+                "yra"
+              ],
+              "correctOrder": [
+                "Lempa",
+                "yra",
+                "ryški."
+              ]
+            }
+          ]
+        },
+        {
+          "levelId": 3,
+          "title": "Household Actions",
+          "sentences": [
+            {
+              "type": "completion",
+              "text": "Prašau _______ duris.",
+              "translation": "Please open the door.",
+              "missing": "atidaryti",
+              "options": [
+                "atidaryti",
+                "uždaryti",
+                "valyti",
+                "žiūrėti"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "I am drinking tea in the kitchen.",
+              "scrambled": [
+                "geriu",
+                "Aš",
+                "arbatą",
+                "virtuvėje"
+              ],
+              "correctOrder": [
+                "Aš",
+                "geriu",
+                "arbatą",
+                "virtuvėje"
+              ]
+            },
+            {
+              "type": "completion",
+              "text": "Man reikia _______ kambarį.",
+              "translation": "I need to clean the room.",
+              "missing": "sutvarkyti",
+              "options": [
+                "sutvarkyti",
+                "nupirkti",
+                "pamatyti",
+                "dažyti"
+              ]
+            },
+            {
+              "type": "sorting",
+              "translation": "I am cooking dinner.",
+              "scrambled": [
+                "vakarienę.",
+                "gaminu",
+                "Aš"
+              ],
+              "correctOrder": [
+                "Aš",
+                "gaminu",
+                "vakarienę."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

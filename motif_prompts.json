@@ -1,0 +1,17 @@
+[
+  {
+    "name": "ui_bg_pattern",
+    "prompt": "Minimalist repeating pattern of Lithuanian straw Sodai geometric shapes, amber and cream colors, pure white background, flat vector style.",
+    "reference": "pattern_ref.png"
+  },
+  {
+    "name": "sidebar_sun",
+    "prompt": "Traditional Lithuanian wood-carved sun motif with geometric rays, star center, warm amber and brown tones, vector art.",
+    "reference": "sun_ref.jpg"
+  },
+  {
+    "name": "header_tulip",
+    "prompt": "Stylized Lithuanian folk art tulip flower, symmetric, bold red and green, white background, clean crisp edges.",
+    "reference": "tulip_ref.png"
+  }
+]

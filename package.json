@@ -1,0 +1,24 @@
+{
+  "name": "labas-lithuanian-app",
+  "version": "1.0.0",
+  "description": "A lightweight Lithuanian-English language learning app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@translated/lara": "^1.18.2",
+    "cors": "^2.8.5",
+    "deepl-node": "^1.24.0",
+    "dotenv": "^18.0.10",
+    "express": "^4.18.2",
+    "helmet": "^8.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
+  "author": "Your Name",
+  "license": "ISC"
+}

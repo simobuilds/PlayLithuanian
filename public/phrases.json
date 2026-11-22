@@ -1,0 +1,367 @@
+[
+  {
+    "topic": "Foundations & Greetings",
+    "phrases": [
+      {
+        "id": 1,
+        "english": "Hello, how are you?",
+        "lithuanian": "Labas, kaip tau sekasi?",
+        "words": [
+          "Labas,",
+          "kaip",
+          "tau",
+          "sekasi?"
+        ],
+        "shuffled": [
+          "sekasi?",
+          "tau",
+          "kaip",
+          "Labas,"
+        ]
+      },
+      {
+        "id": 2,
+        "english": "My name is Simas.",
+        "lithuanian": "Mano vardas yra Simas",
+        "words": [
+          "Mano",
+          "vardas",
+          "yra",
+          "Simas"
+        ],
+        "shuffled": [
+          "vardas",
+          "Mano",
+          "Simas",
+          "yra"
+        ]
+      },
+      {
+        "id": 3,
+        "english": "I am very happy.",
+        "lithuanian": "Aš esu labai laimingas",
+        "words": [
+          "Aš",
+          "esu",
+          "labai",
+          "laimingas"
+        ],
+        "shuffled": [
+          "esu",
+          "laimingas",
+          "Aš",
+          "labai"
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "Numbers & Time",
+    "phrases": [
+      {
+        "id": 4,
+        "english": "I have two sisters.",
+        "lithuanian": "Aš turiu dvi seseris",
+        "words": [
+          "Aš",
+          "turiu",
+          "dvi",
+          "seseris"
+        ],
+        "shuffled": [
+          "turiu",
+          "dvi",
+          "seseris",
+          "Aš"
+        ]
+      },
+      {
+        "id": 5,
+        "english": "What time is it now?",
+        "lithuanian": "Kiek dabar yra valandų?",
+        "words": [
+          "Kiek",
+          "dabar",
+          "yra",
+          "valandų?"
+        ],
+        "shuffled": [
+          "dabar",
+          "yra",
+          "Kiek",
+          "valandų?"
+        ]
+      },
+      {
+        "id": 6,
+        "english": "Today is Monday.",
+        "lithuanian": "Šiandien yra pirmadienis",
+        "words": [
+          "Šiandien",
+          "yra",
+          "pirmadienis"
+        ],
+        "shuffled": [
+          "yra",
+          "pirmadienis",
+          "Šiandien"
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "Survival & Directions",
+    "phrases": [
+      {
+        "id": 7,
+        "english": "Where is the pharmacy?",
+        "lithuanian": "Kur yra vaistinė?",
+        "words": [
+          "Kur",
+          "yra",
+          "vaistinė?"
+        ],
+        "shuffled": [
+          "vaistinė?",
+          "Kur",
+          "yra"
+        ]
+      },
+      {
+        "id": 8,
+        "english": "I am lost.",
+        "lithuanian": "Aš pasiklydau",
+        "words": [
+          "Aš",
+          "pasiklydau"
+        ],
+        "shuffled": [
+          "pasiklydau",
+          "Aš"
+        ]
+      },
+      {
+        "id": 9,
+        "english": "Help me, please.",
+        "lithuanian": "Padėkite man, prašau",
+        "words": [
+          "Padėkite",
+          "man,",
+          "prašau"
+        ],
+        "shuffled": [
+          "Padėkite",
+          "prašau",
+          "man,"
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "The Baltic Table (Food)",
+    "phrases": [
+      {
+        "id": 10,
+        "english": "I want cold beet soup.",
+        "lithuanian": "Aš noriu šaltibarščių",
+        "words": [
+          "Aš",
+          "noriu",
+          "šaltibarščių"
+        ],
+        "shuffled": [
+          "noriu",
+          "šaltibarščių",
+          "Aš"
+        ]
+      },
+      {
+        "id": 11,
+        "english": "Can I have the bill?",
+        "lithuanian": "Ar galiu gauti sąskaitą?",
+        "words": [
+          "Ar",
+          "galiu",
+          "gauti",
+          "sąskaitą?"
+        ],
+        "shuffled": [
+          "galiu",
+          "gauti",
+          "Ar",
+          "sąskaitą?"
+        ]
+      },
+      {
+        "id": 12,
+        "english": "This bread is fresh.",
+        "lithuanian": "Ši duona yra šviežia",
+        "words": [
+          "Ši",
+          "duona",
+          "yra",
+          "šviežia"
+        ],
+        "shuffled": [
+          "yra",
+          "Ši",
+          "šviežia",
+          "duona"
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "On the Move (Travel)",
+    "phrases": [
+      {
+        "id": 13,
+        "english": "When is the bus?",
+        "lithuanian": "Kada bus autobusas?",
+        "words": [
+          "Kada",
+          "bus",
+          "autobusas?"
+        ],
+        "shuffled": [
+          "autobusas?",
+          "Kada",
+          "bus"
+        ]
+      },
+      {
+        "id": 14,
+        "english": "I need a map.",
+        "lithuanian": "Man reikia žemėlapio",
+        "words": [
+          "Man",
+          "reikia",
+          "žemėlapio"
+        ],
+        "shuffled": [
+          "reikia",
+          "žemėlapio",
+          "Man"
+        ]
+      },
+      {
+        "id": 15,
+        "english": "Stop here, please.",
+        "lithuanian": "Sustokite čia, prašau",
+        "words": [
+          "Sustokite",
+          "čia,",
+          "prašau"
+        ],
+        "shuffled": [
+          "Sustokite",
+          "prašau",
+          "čia,"
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "Daily Life",
+    "phrases": [
+      {
+        "id": 16,
+        "english": "I go to work.",
+        "lithuanian": "Aš einu į darbą",
+        "words": [
+          "Aš",
+          "einu",
+          "į",
+          "darbą"
+        ],
+        "shuffled": [
+          "einu",
+          "darbą",
+          "į",
+          "Aš"
+        ]
+      },
+      {
+        "id": 17,
+        "english": "She reads a book.",
+        "lithuanian": "Ji skaito knygą",
+        "words": [
+          "Ji",
+          "skaito",
+          "knygą"
+        ],
+        "shuffled": [
+          "knygą",
+          "skaito",
+          "Ji"
+        ]
+      },
+      {
+        "id": 18,
+        "english": "We watch television.",
+        "lithuanian": "Mes žiūrime televiziją",
+        "words": [
+          "Mes",
+          "žiūrime",
+          "televiziją"
+        ],
+        "shuffled": [
+          "televiziją",
+          "žiūrime",
+          "Mes"
+        ]
+      }
+    ]
+  },
+  {
+    "topic": "Around the Home",
+    "phrases": [
+      {
+        "id": 19,
+        "english": "The cat is sleeping.",
+        "lithuanian": "Katė dabar miega",
+        "acceptedOrders": [["Katė", "miega", "dabar"]],
+        "words": [
+          "Katė",
+          "dabar",
+          "miega"
+        ],
+        "shuffled": [
+          "miega",
+          "Katė",
+          "dabar"
+        ]
+      },
+      {
+        "id": 20,
+        "english": "Clean the room.",
+        "lithuanian": "Sutvarkyk savo kambarį",
+        "words": [
+          "Sutvarkyk",
+          "savo",
+          "kambarį"
+        ],
+        "shuffled": [
+          "Sutvarkyk",
+          "kambarį",
+          "savo"
+        ]
+      },
+      {
+        "id": 21,
+        "english": "Turn off the light.",
+        "lithuanian": "Išjunk šviesą, prašau",
+        "words": [
+          "Išjunk",
+          "šviesą,",
+          "prašau"
+        ],
+        "shuffled": [
+          "Išjunk",
+          "prašau",
+          "šviesą,"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+.aws/
+.agents/
+.codex/
+.continue/
+node_modules/
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*.part.mp3
+trash/
+lt-audio/venv/

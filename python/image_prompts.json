@@ -1,0 +1,308 @@
+[
+  {
+    "id": 11,
+    "word": "Leg",
+    "prompt": "Minimalist flat vector app icon of a stylized walking man with bright yellow arrow pointing at leg from a small navy shorts cuff down to a bare foot, warm tan skin with clean two-tone geometric shading, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, crisp edges, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "011_leg.jpeg"
+  },
+  {
+    "id": 37,
+    "word": "Tomato",
+    "prompt": "Minimalist flat vector app icon of a plump bright red tomato with a spiky five-leaf emerald green stem on top and a clean light-red highlight arc, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, crisp edges, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "037_tomato.jpeg"
+  },
+  {
+    "id": 38,
+    "word": "Corn",
+    "prompt": "Minimalist flat vector app icon of a golden-yellow ear of corn with simple geometric kernel rows wrapped halfway in two bright green husks, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, crisp edges, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "038_corn.jpeg"
+  },
+  {
+    "id": 39,
+    "word": "Cucumber",
+    "prompt": "Minimalist flat vector app icon of a fresh dark green curved cucumber with subtle lighter-green stripes and tiny rounded bumps, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, crisp edges, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "039_cucumber.jpeg"
+  },
+  {
+    "id": 40,
+    "word": "Eggplant",
+    "prompt": "Minimalist flat vector app icon of a glossy deep purple eggplant with a curved teardrop silhouette and a bright green calyx cap on top, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, crisp edges, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "040_eggplant.jpeg"
+  },
+  {
+    "id": 41,
+    "word": "Grapes",
+    "prompt": "Minimalist flat vector app icon of a triangular bunch of plump purple grapes with a small brown stem and one bright green leaf at the top, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, crisp edges, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "041_grapes.jpeg"
+  },
+  {
+    "id": 46,
+    "word": "Purple",
+    "prompt": "Minimalist flat vector app icon of a sleek purple paint splash paired with a simple purple paint droplet, monochrome vibrant violet and deep plum two-tone shading, centered, bold geometric shapes, no outlines, crisp edges, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "046_purple.jpeg"
+  },
+  {
+    "id": 47,
+    "word": "Pink",
+    "prompt": "Minimalist flat vector app icon of a sleek pink paint splash paired with a simple pink paint droplet, monochrome bright bubblegum-pink and rich magenta two-tone shading, centered, bold geometric shapes, no outlines, crisp edges, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "047_pink.jpeg"
+  },
+  {
+    "id": 48,
+    "word": "Black",
+    "prompt": "Minimalist flat vector app icon of a sleek black paint splash paired with a simple black paint droplet, monochrome deep jet-black and dark slate-gray two-tone shading, centered, bold geometric shapes, no outlines, crisp edges, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "048_black.jpeg"
+  },
+  {
+    "id": 53,
+    "word": "School",
+    "prompt": "Minimalist flat vector app icon of a classic brick-red schoolhouse with a golden bell tower and navy roof, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "053_school.jpeg"
+  },
+  {
+    "id": 54,
+    "word": "Classroom",
+    "prompt": "Minimalist flat vector app icon of a simplified classroom scene showing a small wooden student desk and chair in front of a green wall board, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "054_classroom.jpeg"
+  },
+  {
+    "id": 55,
+    "word": "Textbook",
+    "prompt": "Minimalist flat vector app icon of a thick hardcover textbook in bright cobalt blue with warm cream pages and a yellow ribbon bookmark, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "055_textbook.jpeg"
+  },
+  {
+    "id": 57,
+    "word": "Theater",
+    "prompt": "Minimalist flat vector app icon of a grand theater facade with a glowing gold marquee canopy and deep red entrance doors, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "057_theater.jpeg"
+  },
+  {
+    "id": 58,
+    "word": "Stage",
+    "prompt": "Minimalist flat vector app icon of a wooden theater stage framed by draped crimson velvet curtains and a bright golden spotlight beam, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "058_stage.jpeg"
+  },
+  {
+    "id": 59,
+    "word": "Script",
+    "prompt": "Minimalist flat vector app icon of a rolled cream-beige paper script scroll bound with a neat red ribbon and clean geometric text lines, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "059_script.jpeg"
+  },
+  {
+    "id": 60,
+    "word": "Ticket",
+    "prompt": "Minimalist flat vector app icon of a classic notched admit-one ticket stub in bright coral and gold with a small star emblem, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "060_ticket.jpeg"
+  },
+  {
+    "id": 65,
+    "word": "Plate",
+    "prompt": "Minimalist flat vector app icon of a round dining plate in soft ice-blue and cool-gray two-tone shading seen from a clean top-angled view, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "065_plate.jpeg"
+  },
+  {
+    "id": 67,
+    "word": "Cup",
+    "prompt": "Minimalist flat vector app icon of a cheerful bright yellow ceramic mug with a curved handle and subtle light steam curl, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "067_cup.jpeg"
+  },
+  {
+    "id": 68,
+    "word": "Napkin",
+    "prompt": "Minimalist flat vector app icon of a neatly folded triangular cloth napkin in vibrant coral-red with crisp two-tone fold shading, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "068_napkin.jpeg"
+  },
+  {
+    "id": 69,
+    "word": "Cushion",
+    "prompt": "Minimalist flat vector app icon of a plump square throw cushion in bright mustard-yellow with a central fabric button, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "069_cushion.jpeg"
+  },
+  {
+    "id": 70,
+    "word": "Stool",
+    "prompt": "Minimalist flat vector app icon of a round wooden bar stool with a warm amber seat and three angled brown legs, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "070_stool.jpeg"
+  },
+  {
+    "id": 71,
+    "word": "Bench",
+    "prompt": "Minimalist flat vector app icon of a classic wooden park bench with clean horizontal slats and dark navy cast-iron side legs, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "071_bench.jpeg"
+  },
+  {
+    "id": 72,
+    "word": "Beanbag",
+    "prompt": "Minimalist flat vector app icon of a cozy teardrop-shaped beanbag chair in vibrant violet-purple with soft two-tone crease shading, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "072_beanbag.jpeg"
+  },
+  {
+    "id": 74,
+    "word": "Blanket",
+    "prompt": "Minimalist flat vector app icon of a neatly folded thick cozy blanket in warm coral and navy stripes, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "074_blanket.jpeg"
+  },
+  {
+    "id": 75,
+    "word": "Mattress",
+    "prompt": "Minimalist flat vector app icon of a thick plush bed mattress in soft teal and cool-gray geometric layers with subtle quilted diamond dots, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "075_mattress.jpeg"
+  },
+  {
+    "id": 77,
+    "word": "Hanger",
+    "prompt": "Minimalist flat vector app icon of a sleek wooden clothes hanger with a curved silver-gray metal hook on top, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "077_hanger.jpeg"
+  },
+  {
+    "id": 78,
+    "word": "Coat",
+    "prompt": "Minimalist flat vector app icon of a warm winter trench coat in deep camel-tan with large navy buttons and a crisp collar, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "078_coat.jpeg"
+  },
+  {
+    "id": 79,
+    "word": "Dress",
+    "prompt": "Minimalist flat vector app icon of a stylish flared A-line dress in vibrant magenta-pink with a neat waist belt, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "079_dress.jpeg"
+  },
+  {
+    "id": 80,
+    "word": "Mirror",
+    "prompt": "Minimalist flat vector app icon of a tall oval standing mirror with a warm wooden frame and a crisp diagonal sky-blue glass reflection, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "080_mirror.jpeg"
+  },
+  {
+    "id": 98,
+    "word": "Soup",
+    "prompt": "Minimalist flat vector app icon of a deep teal bowl filled with warm golden-orange soup, tiny green herb specks, and gentle steam curls, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "098_soup.jpeg"
+  },
+  {
+    "id": 107,
+    "word": "Butter",
+    "prompt": "Minimalist flat vector app icon of a neat block of creamy yellow butter resting on a cool ice-blue butter dish with one sliced pat in front, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "107_butter.jpeg"
+  },
+  {
+    "id": 108,
+    "word": "Sack",
+    "prompt": "Minimalist flat vector app icon of a plump woven burlap potato sack in warm tan and brown tied at the top with a dark rope, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "108_sack.jpeg"
+  },
+  {
+    "id": 110,
+    "word": "Knife",
+    "prompt": "Minimalist flat vector app icon of a sharp chef's kitchen knife with a sleek silver-gray steel blade and a dark navy handle, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "110_knife.jpeg"
+  },
+  {
+    "id": 111,
+    "word": "Cutting Board",
+    "prompt": "Minimalist flat vector app icon of a warm wooden rectangular cutting board with a top handle hole and rich two-tone grain, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "111_cutting board.jpeg"
+  },
+  {
+    "id": 113,
+    "word": "Pie",
+    "prompt": "Minimalist flat vector app icon of a warm golden-brown lattice-crust pie in a red ceramic pie dish with a subtle sweet steam curl, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "113_pie.jpeg"
+  },
+  {
+    "id": 114,
+    "word": "Cider",
+    "prompt": "Minimalist flat vector app icon of a glass mug filled with glowing amber apple cider, a brown cinnamon stick, and a tiny red apple slice on the rim, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "114_cider.jpeg"
+  },
+  {
+    "id": 115,
+    "word": "Tree",
+    "prompt": "Minimalist flat vector app icon of a lush rounded green orchard tree with a sturdy brown trunk and three tiny red apples in the canopy, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "115_tree.jpeg"
+  },
+  {
+    "id": 116,
+    "word": "Basket",
+    "prompt": "Minimalist flat vector app icon of a woven wicker harvest basket in warm tan and brown tones with a sturdy curved handle, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "116_basket.jpeg"
+  },
+  {
+    "id": 118,
+    "word": "Smoothie",
+    "prompt": "Minimalist flat vector app icon of a tall clear ice-blue shaded cup filled with creamy golden-yellow smoothie and a bright coral striped straw, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "118_smoothie.jpeg"
+  },
+  {
+    "id": 119,
+    "word": "Peel",
+    "prompt": "Minimalist flat vector app icon of an empty bright yellow banana peel splayed open into three curved petals, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "119_peel.jpeg"
+  },
+  {
+    "id": 121,
+    "word": "Juice",
+    "prompt": "Minimalist flat vector app icon of a tall glass filled with vibrant tangerine-orange juice and a tiny green straw, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "121_juice.jpeg"
+  },
+  {
+    "id": 122,
+    "word": "Slice",
+    "prompt": "Minimalist flat vector app icon of a single round citrus orange slice showing crisp radial triangular segments in bright orange and cream, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "122_slice.jpeg"
+  },
+  {
+    "id": 123,
+    "word": "Pitcher",
+    "prompt": "Minimalist flat vector app icon of a clear ice-blue shaded glass pitcher filled halfway with bright orange juice and a curved handle, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "123_pitcher.jpeg"
+  },
+  {
+    "id": 124,
+    "word": "Jam",
+    "prompt": "Minimalist flat vector app icon of a cute glass jar filled with vibrant orange marmalade jam, a checkered coral lid, and a cream label, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "124_jam.jpeg"
+  },
+  {
+    "id": 125,
+    "word": "Cake",
+    "prompt": "Minimalist flat vector app icon of a slice of celebration layer cake with soft ice-blue frosting, bright pink sponge layers, and a red berry on top, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "125_cake.jpeg"
+  },
+  {
+    "id": 127,
+    "word": "Cream",
+    "prompt": "Minimalist flat vector app icon of a fluffy piped swirl of whipped cream in cool ice-blue and soft gray two-tone shading, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "127_cream.jpeg"
+  },
+  {
+    "id": 129,
+    "word": "Heart",
+    "prompt": "Minimalist flat vector app icon of a classic symmetrical love heart in vibrant crimson-red and bright coral two-tone shading, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "129_heart.jpeg"
+  },
+  {
+    "id": 134,
+    "word": "Sky",
+    "prompt": "Minimalist flat vector app icon of a soft sky-blue rounded cloud backdrop with two crisp layered ice-blue fluffy clouds floating in front, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "134_sky.jpeg"
+  },
+  {
+    "id": 137,
+    "word": "Sun",
+    "prompt": "Minimalist flat vector app icon of a cheerful golden-yellow sun circle surrounded by eight crisp triangular sunbeams, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "137_sun.jpeg"
+  },
+  {
+    "id": 140,
+    "word": "Taxi",
+    "prompt": "Minimalist flat vector app icon of a cute bright yellow city taxi cab in side profile with a checkered navy stripe and roof sign, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "140_taxi.jpeg"
+  },
+  {
+    "id": 141,
+    "word": "Leaf",
+    "prompt": "Minimalist flat vector app icon of a single fresh emerald-green leaf with a crisp lime-green central vein and curved stem, centered, bold geometric shapes, no outlines, clean two-tone flat shading, vibrant high-contrast modern palette, pure white background, Duolingo-inspired UI illustration --ar 1:1",
+    "imgFile": "141_leaf.jpeg"
+  }
+]

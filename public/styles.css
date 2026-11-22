@@ -1,0 +1,87 @@
+:root {
+    --amber: #FFB000;
+    --forest-green: #006A44;
+    --deep-blue: #002F6C;
+    --linen: #F9F7F2;
+    --glass: rgba(255, 255, 255, 0.8);
+}
+
+body {
+    background: linear-gradient(135deg, var(--linen) 0%, #e0dcd0 100%);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: var(--deep-blue);
+}
+
+/* Glassmorphism Card Style */
+.game-card {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+/* Roadmap UI */
+.roadmap-step {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--amber);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s transform;
+}
+
+.roadmap-step.completed {
+    background: var(--forest-green);
+    color: white;
+}
+
+/* Word Pills for Syntax Sorting */
+.word-pill {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid var(--deep-blue);
+    background: white;
+}
+
+.word-pill:active { transform: scale(0.9); }
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.progress-dot {
+    width: 15px; height: 15px; border-radius: 50%; background: #ddd; display: inline-block;
+}
+.progress-dot.active { background: var(--amber, #FFB000); }
+.word-pill:hover { transform: translateY(-2px); }
+
+.welcome-tulip,
+.review-tulip {
+    display: block;
+    aspect-ratio: 2816 / 1536;
+    object-fit: contain;
+    border-radius: 12px;
+    mix-blend-mode: multiply;
+}
+
+.welcome-tulip {
+    width: clamp(76px, 26vw, 220px);
+}
+
+.review-tulip {
+    width: min(144px, 100%);
+    margin-inline: auto;
+}
+
+@media (min-width: 576px) {
+    .welcome-tulip {
+        width: clamp(240px, 32vw, 360px);
+    }
+}

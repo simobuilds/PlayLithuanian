@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Lithuanian</title>
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=2">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Inline critical UI logic for the glassmorphism aesthetic */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .progress-dot {
+            width: 15px; height: 15px; border-radius: 50%; background: #ddd; display: inline-block;
+        }
+        .progress-dot.active { background: var(--amber, #FFB000); }
+        .word-pill { cursor: pointer; transition: 0.2s; }
+        .word-pill:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="bg-light">
+
+<div class="container py-4">
+    <!-- Navigation Header -->
+    <header class="d-flex flex-wrap gap-2 justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary" style="cursor: pointer;" onclick="navigateTo('landing')">Play Lithuanian</h2>
+                <nav class="d-flex gap-3 align-items-center">
+            <button class="btn btn-sm btn-outline-primary" onclick="navigateTo('landing')">Home</button>
+            <button class="btn btn-sm btn-outline-primary" onclick="navigateTo('roadmap')">Learn</button>
+            <button class="btn btn-sm btn-outline-primary" onclick="navigateTo('games-select')">Games</button>
+            <button class="btn btn-sm btn-outline-primary" onclick="navigateTo('profile')">Profile</button>
+        </nav>
+
+    </header>
+
+    <div id="app-viewport" class="glass-panel p-4 shadow-sm min-vh-75">
+        </div>
+</div>
+
+<script>
+/**
+ * UTILITY FUNCTIONS
+ */
+
+function playAudio(word) {
+    if (!word) return;
+    const voice = state.user.voice || 'male';
+    // Match file system: "Doctor.mp3", "Cutting board.mp3"
+    const filename = `${word}.mp3`;
+    const path = `/audio/${voice}/${filename}`;
+    
+    console.log("Playing audio:", path);
+    const audio = new Audio(path);
+    audio.play().catch(e => {
+        console.error("Audio playback failed:", path, e);
+    });
+}
+
+function escapeHtml(text) {
+    if (text == null) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+/**
+ * APP STATE MANAGEMENT
+ */
+let state = {
+    view: 'landing', 
+    sectionIdx: 0,
+    levelIdx: 0,
+    currentQuestionIdx: 0,
+    dictionary: null,
+    imageWords: null,
+    phrases: null,
+    selectedGameTopic: null,
+    answers: [], 
+    progress: JSON.parse(localStorage.getItem('lt_progress')) || {},
+    credits: parseInt(localStorage.getItem('lt_credits')) !== NaN ? (parseInt(localStorage.getItem('lt_credits')) || 100) : 100,
+    unlockedSections: JSON.parse(localStorage.getItem('lt_unlocked_sections')) || [],
+    unlockedGameLevels: JSON.parse(localStorage.getItem('lt_unlocked_game_levels')) || [],
+    unlockedMatchLevels: JSON.parse(localStorage.getItem('lt_unlocked_match_levels')) || [],
+    unlockedPhraseLevels: JSON.parse(localStorage.getItem('lt_unlocked_phrase_levels')) || [],
+    matchTimer: null,
+    timeLeft: 60,
+    currentQuestion: null, 
+    user: {
+        name: localStorage.getItem('userName') || 'Learner',
+        streak: parseInt(localStorage.getItem('userStreak')) || 0,
+        totalLessons: parseInt(localStorage.getItem('totalLessons')) || 0,
+        voice: localStorage.getItem('userVoice') || 'male'
+    }
+};
+
+async function init() {
+    try {
+        const [dictRes, imgRes, phraseRes] = await Promise.all([
+            fetch('/api/dictionary'),
+            fetch('/api/imagewords'),
+            fetch('/phrases.json')
+        ]);
+        if (!dictRes.ok || !imgRes.ok || !phraseRes.ok) throw new Error('Failed to fetch data');
+        state.dictionary = await dictRes.json();
+        state.imageWords = await imgRes.json();
+        state.phrases = await phraseRes.json();
+        validateTileContent();
+        render();
+    } catch (error) {
+        document.getElementById('app-viewport').innerHTML = `
+            <div class="alert alert-danger">
+                <h4>Error loading app</h4>
+                <p>${escapeHtml(error.message)}. Please refresh the page.</p>
+            </div>
+        `;
+    }
+}
+
+function render() {
+    const viewport = document.getElementById('app-viewport');
+    if (state.view === 'landing') renderLanding(viewport);
+    else if (state.view === 'roadmap') renderRoadmap(viewport);
+    else if (state.view === 'game') renderGame(viewport);
+    else if (state.view === 'review') renderReview(viewport);
+    else if (state.view === 'profile') renderProfile(viewport);
+    else if (state.view === 'games-select') renderGamesSelect(viewport);
+    else if (state.view === 'image-game') renderImageGame(viewport);
+    else if (state.view === 'matching-game') renderMatchingGame(viewport);
+    else if (state.view === 'phrase-game') renderPhraseGame(viewport);
+}
+
+function navigateTo(view) {
+    if (state.view === 'phrase-game' && view !== 'phrase-game') {
+        activePhraseAudio?.pause();
+        activePhraseAudio = null;
+        phraseAudioClips.clear();
+    }
+    state.view = view;
+    render();
+}
+
+function renderLanding(container) {
+    const completedLevels = Object.keys(state.progress).filter(k => state.progress[k] && !k.startsWith('game_level')).length;
+    const totalLevels = state.dictionary ? 
+        state.dictionary.sections.reduce((sum, sec) => sum + (sec.levels ? sec.levels.length : 0), 0) : 0;
+    
+    container.innerHTML = `
+        <div class="text-center py-5">
+            <div class="d-flex align-items-center justify-content-center gap-2 gap-sm-3 mb-3">
+                <h1 class="display-3 mb-0 fw-bold text-primary">Play Lithuanian</h1>
+                <img src="/img/motifs/tulip.jpeg" alt="" class="welcome-tulip">
+            </div>
+            <p class="lead mb-4">Welcome to Lithuanian Language Learning</p>
+            <div class="d-flex gap-3 justify-content-center mt-5">
+                <button class="btn btn-primary btn-lg px-5" onclick="navigateTo('roadmap')">Learn</button>
+                <button class="btn btn-success btn-lg px-5" onclick="navigateTo('games-select')">Games</button>
+            </div>
+        </div>
+    `;
+}
+
+function renderGamesSelect(container) {
+    if (!state.imageWords) {
+        container.innerHTML = `<div class="text-center py-5"><p class="text-muted">Loading games...</p></div>`;
+        return;
+    }
+    container.innerHTML = `
+        <div class="py-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0 fw-bold">Language Games</h2>
+                <div class="badge bg-warning text-dark p-2 fs-6">💎 ${state.credits} Credits</div>
+            </div>
+            
+            <div class="row g-4 mb-5">
+                <!-- Image Association Card -->
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm overflow-hidden h-100">
+                        <div class="card-header bg-white p-4 d-flex justify-content-between align-items-center" 
+                             style="cursor: pointer;" onclick="toggleGameType('image')">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="display-5">🖼️</div>
+                                <div>
+                                    <h5 class="mb-0 fw-bold text-primary">Image Association</h5>
+                                    <small class="text-muted">10 Levels • Visual Learning</small>
+                                </div>
+                            </div>
+                            <div class="text-muted">${expandedGameType === 'image' ? '▲' : '▼'}</div>
+                        </div>
+                        ${expandedGameType === 'image' ? `
+                            <div class="card-body bg-light p-3">
+                                <div class="row g-2">
+                                    ${Array.from({length: 10}, (_, i) => i + 1).map(levelNum => {
+                                        const scoreKey = `game_level_${levelNum}`;
+                                        const lastScore = state.progress[scoreKey];
+                                        const isNaturallyUnlocked = levelNum === 1 || state.progress[`game_level_${levelNum-1}`] !== undefined;
+                                        const isCreditUnlocked = (state.unlockedGameLevels || []).includes(levelNum);
+                                        const isUnlocked = isNaturallyUnlocked || isCreditUnlocked;
+                                        
+                                        return `
+                                        <div class="col-12">
+                                            <button class="btn ${isUnlocked ? 'btn-white shadow-sm' : 'btn-light opacity-50'} w-100 text-start d-flex justify-content-between align-items-center p-3 border-0"
+                                                    onclick="${isUnlocked ? `startImageLevel(${levelNum})` : `attemptGameUnlock(${levelNum})`}">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span>${isUnlocked ? '🏆' : '🔒'}</span>
+                                                    <span class="fw-bold">Level ${levelNum}</span>
+                                                </div>
+                                                ${lastScore !== undefined ? `<span class="badge bg-success">${lastScore}%</span>` : isUnlocked ? '' : '<span class="text-muted small">Unlock (10💎)</span>'}
+                                            </button>
+                                        </div>`}).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+
+                
+                <!-- Sentence Builder Card -->
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm overflow-hidden h-100">
+                        <div class="card-header bg-white p-4 d-flex justify-content-between align-items-center" 
+                             style="cursor: pointer;" onclick="toggleGameType('phrase')">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="display-5">✍️</div>
+                                <div>
+                                    <h5 class="mb-0 fw-bold text-info">Sentence Builder</h5>
+                                    <small class="text-muted">${state.phrases ? state.phrases.length : 0} Sections • Grammar</small>
+                                </div>
+                            </div>
+                            <div class="text-muted">${expandedGameType === 'phrase' ? '▲' : '▼'}</div>
+                        </div>
+                        ${expandedGameType === 'phrase' ? `
+                            <div class="card-body bg-light p-3">
+                                <div class="row g-2">
+                                    ${state.phrases.map((section, idx) => {
+                                        const secIdx = idx + 1;
+                                        const isUnlocked = secIdx === 1 || state.progress[`phrase_level_${secIdx-1}`] !== undefined || state.unlockedPhraseLevels.includes(secIdx);
+                                        const isDone = state.progress[`phrase_level_${secIdx}`];
+                                        return `
+                                        <div class="col-12">
+                                            <button class="btn ${isUnlocked ? 'btn-white shadow-sm' : 'btn-light opacity-50'} w-100 text-start d-flex justify-content-between align-items-center p-3 border-0"
+                                                    onclick="${isUnlocked ? `startPhraseGame(${idx})` : `attemptPhraseUnlock(${secIdx})`}">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span>${isUnlocked ? '📖' : '🔒'}</span>
+                                                    <span class="fw-bold">${section.topic}</span>
+                                                </div>
+                                                ${isDone ? '<span class="badge bg-success">Done</span>' : isUnlocked ? '' : '<span class="text-muted small">Unlock (10💎)</span>'}
+                                            </button>
+                                        </div>`}).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+
+                <!-- Word Matching Card -->
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm overflow-hidden h-100">
+                        <div class="card-header bg-white p-4 d-flex justify-content-between align-items-center" 
+                             style="cursor: pointer;" onclick="toggleGameType('match')">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="display-5">🧩</div>
+                                <div>
+                                    <h5 class="mb-0 fw-bold text-success">Word Pair Matching</h5>
+                                    <small class="text-muted">10 Levels • Speed & Recall</small>
+                                </div>
+                            </div>
+                            <div class="text-muted">${expandedGameType === 'match' ? '▲' : '▼'}</div>
+                        </div>
+                        ${expandedGameType === 'match' ? `
+                            <div class="card-body bg-light p-3">
+                                <div class="row g-2">
+                                    ${Array.from({length: 10}, (_, i) => i + 1).map(levelNum => {
+                                        const isNaturallyUnlocked = levelNum === 1 || state.progress[`match_level_${levelNum-1}`] !== undefined;
+                                        const isCreditUnlocked = (state.unlockedMatchLevels || []).includes(levelNum);
+                                        const isUnlocked = isNaturallyUnlocked || isCreditUnlocked;
+                                        const score = state.progress[`match_level_${levelNum}`];
+                                        
+                                        return `
+                                        <div class="col-12">
+                                            <button class="btn ${isUnlocked ? 'btn-white shadow-sm' : 'btn-light opacity-50'} w-100 text-start d-flex justify-content-between align-items-center p-3 border-0"
+                                                    onclick="${isUnlocked ? `startMatchingGame(${levelNum})` : `attemptMatchUnlock(${levelNum})`}">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <span>${isUnlocked ? '🧩' : '🔒'}</span>
+                                                    <span class="fw-bold">Level ${levelNum}</span>
+                                                </div>
+                                                ${score ? '<span class="badge bg-success">Done</span>' : isUnlocked ? '' : '<span class="text-muted small">Unlock (10💎)</span>'}
+                                            </button>
+                                        </div>`}).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="btn btn-outline-secondary" onclick="navigateTo('landing')">Back to Home</button>
+            </div>
+        </div>
+    `;
+}
+
+function toggleGameType(type) {
+    if (expandedGameType === type) expandedGameType = null;
+    else expandedGameType = type;
+    render();
+}
+
+
+function attemptMatchUnlock(levelNum) {
+    if (confirm(`Unlock Matching Level ${levelNum} for 10 credits?`)) {
+        if (state.credits >= 10) {
+            state.credits -= 10;
+            if (!state.unlockedMatchLevels) state.unlockedMatchLevels = [];
+            state.unlockedMatchLevels.push(levelNum);
+            localStorage.setItem('lt_credits', state.credits);
+            localStorage.setItem('lt_unlocked_match_levels', JSON.stringify(state.unlockedMatchLevels));
+            render();
+        } else {
+            alert('Not enough credits! Complete more lessons or games to earn more.');
+        }
+    }
+}
+
+function attemptGameUnlock(levelNum) {
+    if (confirm(`Unlock Level ${levelNum} for 10 credits?`)) {
+        if (state.credits >= 10) {
+            state.credits -= 10;
+            if (!state.unlockedGameLevels) state.unlockedGameLevels = [];
+            state.unlockedGameLevels.push(levelNum);
+            localStorage.setItem('lt_credits', state.credits);
+            localStorage.setItem('lt_unlocked_game_levels', JSON.stringify(state.unlockedGameLevels));
+            render();
+        } else {
+            alert('Not enough credits! Complete more lessons or games to earn more.');
+        }
+    }
+}
+
+
+
+/**
+ * SENTENCE BUILDER ENGINE
+ */
+let currentPhraseIndex = 0;
+let currentPhraseSectionIdx = 0;
+let builtSentence = [];
+
+function startPhraseGame(sectionIdx) {
+    currentPhraseSectionIdx = sectionIdx;
+    currentPhraseIndex = 0;
+    builtSentence = [];
+    state.answers = [];
+    state.selectedGameTopic = state.phrases[sectionIdx].topic;
+    state.view = 'phrase-game';
+    render();
+}
+
+let phraseAudioClips = new Map();
+let activePhraseAudio = null;
+
+function preparePhraseAudio(tiles) {
+    const voice = state.user.voice === 'female' ? 'female' : 'male';
+    const nextClips = new Map();
+    for (const tile of tiles) {
+        const word = tile.trim().toLowerCase().normalize('NFC').replace(/^[.,!?;:]+|[.,!?;:]+$/g, '');
+        const path = `/audio/sentence-builder/${voice}/${encodeURIComponent(word)}.mp3`;
+        const clip = nextClips.get(tile) ?? phraseAudioClips.get(tile);
+        if (clip?.getAttribute('src') === path) {
+            nextClips.set(tile, clip);
+        } else {
+            const audio = new Audio();
+            audio.preload = 'auto';
+            audio.src = path;
+            nextClips.set(tile, audio);
+        }
+    }
+    phraseAudioClips = nextClips;
+}
+
+function playPhraseTile(tile) {
+    const clip = phraseAudioClips.get(tile);
+    if (!clip) return;
+    activePhraseAudio?.pause();
+    activePhraseAudio = clip;
+    clip.currentTime = 0;
+    clip.play().catch(error => {
+        if (error.name !== 'AbortError') console.warn('Sentence Builder audio unavailable', error);
+    });
+}
+
+function renderPhraseGame(container) {
+    const section = state.phrases[currentPhraseSectionIdx];
+    const phrase = section.phrases[currentPhraseIndex];
+    preparePhraseAudio(phrase.shuffled);
+
+    renderSentenceTiles(container, {
+        prompt: phrase.english,
+        progress: `Phrase ${currentPhraseIndex + 1}/${section.phrases.length}`,
+        tiles: phrase.shuffled,
+        quitView: 'games-select',
+        checkAction: 'checkPhraseAnswer()'
+    });
+}
+
+function renderSentenceTiles(container, { prompt, progress, tiles, quitView, checkAction }) {
+    container.innerHTML = `
+        <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
+            <h3 class="mb-0">${escapeHtml(prompt)}</h3>
+            <span class="badge bg-info">${progress}</span>
+        </div>
+        <div class="glass-panel p-4 mb-4 d-flex flex-wrap gap-2" aria-label="Your sentence">
+            ${builtSentence.length === 0 ? '<span class="text-muted">Tap words below to build the sentence.</span>' : ''}
+            ${builtSentence.map((word, index) => `
+                <button class="btn btn-primary" onclick="removeFromPhrase(${index})">${escapeHtml(word)}</button>
+            `).join('')}
+        </div>
+        <div class="d-flex flex-wrap gap-2 mb-4" aria-label="Available words">
+            ${tiles.map((word, index) => {
+                const used = builtSentence.filter(token => token === word).length;
+                const occurrence = tiles.slice(0, index + 1).filter(token => token === word).length;
+                return `<button class="btn btn-outline-dark" onclick="addToPhrase(${index})"
+                    ${occurrence <= used ? 'disabled' : ''}>${escapeHtml(word)}</button>`;
+            }).join('')}
+        </div>
+        <button class="btn btn-outline-secondary" onclick="navigateTo('${quitView}')">Quit</button>
+        <button class="btn btn-success" onclick="${checkAction}"
+            ${builtSentence.length !== tiles.length ? 'disabled' : ''}>Check Sentence</button>
+    `;
+}
+
+function currentLessonQuestion() {
+    return state.dictionary.sections[state.sectionIdx].levels[state.levelIdx].sentences[state.currentQuestionIdx];
+}
+
+function addToPhrase(index) {
+    const tiles = state.view === 'game'
+        ? currentLessonQuestion().scrambled
+        : state.phrases[currentPhraseSectionIdx].phrases[currentPhraseIndex].shuffled;
+    if (state.view === 'phrase-game') playPhraseTile(tiles[index]);
+    builtSentence.push(tiles[index]);
+    render();
+}
+
+function matchesTileAnswer(answer, expected, acceptedOrders = []) {
+    return [expected, ...acceptedOrders].some(order =>
+        order.length === answer.length && order.every((token, index) => token === answer[index])
+    );
+}
+
+function validateTileOrders(tiles, expected, acceptedOrders, label) {
+    const validTokens = tokens => Array.isArray(tokens) && tokens.length > 0 &&
+        tokens.every(token => typeof token === 'string' && token.trim().length > 0);
+    const tileKey = tokens => JSON.stringify([...tokens].sort());
+    if (!validTokens(tiles) || !Array.isArray(acceptedOrders) ||
+        [expected, ...acceptedOrders].some(order => !validTokens(order) || tileKey(order) !== tileKey(tiles))) {
+        throw new Error(`Tile mismatch in ${label}`);
+    }
+}
+
+function validateTileContent() {
+    for (const section of state.dictionary.sections) {
+        for (const level of section.levels) {
+            for (const [index, question] of level.sentences.entries()) {
+                if (question.type === 'sorting') {
+                    validateTileOrders(question.scrambled, question.correctOrder,
+                        question.acceptedOrders === undefined ? [] : question.acceptedOrders,
+                        `${level.title}, question ${index + 1}`);
+                }
+            }
+        }
+    }
+    for (const section of state.phrases) {
+        for (const phrase of section.phrases) {
+            validateTileOrders(phrase.shuffled, phrase.words,
+                phrase.acceptedOrders === undefined ? [] : phrase.acceptedOrders,
+                `${section.topic}, phrase ${phrase.id}`);
+        }
+    }
+}
+
+function removeFromPhrase(index) {
+    if (state.view === 'phrase-game') playPhraseTile(builtSentence[index]);
+    builtSentence.splice(index, 1);
+    render();
+}
+
+function checkPhraseAnswer() {
+    const section = state.phrases[currentPhraseSectionIdx];
+    const phrase = section.phrases[currentPhraseIndex];
+    const isCorrect = matchesTileAnswer(builtSentence, phrase.words, phrase.acceptedOrders);
+    
+    state.answers.push(isCorrect);
+
+    const overlay = document.createElement('div');
+    overlay.className = `fixed-top vh-100 d-flex align-items-center justify-content-center ${isCorrect ? 'bg-success' : 'bg-danger'} text-white`;
+    overlay.style.opacity = '0.95';
+    overlay.style.zIndex = '9999';
+    overlay.innerHTML = `
+        <div class="text-center p-4">
+            <h1 class="display-1 mb-3">${isCorrect ? 'Correct! ✓' : 'Oops! ✗'}</h1>
+            <p class="fs-3 mb-4">${escapeHtml(isCorrect ? builtSentence.join(' ') : phrase.lithuanian)}</p>
+            ${!isCorrect ? `<p class="fs-5">You built: ${escapeHtml(builtSentence.join(' '))}</p>` : ''}
+        </div>
+    `;
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+        overlay.remove();
+        builtSentence = [];
+        if (currentPhraseIndex < section.phrases.length - 1) {
+            currentPhraseIndex++;
+            render();
+        } else {
+            completePhraseLevel();
+        }
+    }, 2000);
+}
+
+function completePhraseLevel() {
+    const levelIdx = currentPhraseSectionIdx + 1;
+    state.progress[`phrase_level_${levelIdx}`] = true;
+    localStorage.setItem('lt_progress', JSON.stringify(state.progress));
+    
+    navigateTo('review');
+}
+
+function attemptPhraseUnlock(levelNum) {
+    if (confirm(`Unlock ${state.phrases[levelNum-1].topic} for 10 credits?`)) {
+        if (state.credits >= 10) {
+            state.credits -= 10;
+            state.unlockedPhraseLevels.push(levelNum);
+            localStorage.setItem('lt_credits', state.credits);
+            localStorage.setItem('lt_unlocked_phrase_levels', JSON.stringify(state.unlockedPhraseLevels));
+            render();
+        } else {
+            alert('Not enough credits!');
+        }
+    }
+}
+
+/**
+ * MATCHING GAME ENGINE
+ */
+let matchingPairs = [];
+let selectedEnglish = null;
+let selectedLithuanian = null;
+let matchedIds = [];
+
+
+function startMatchTimer() {
+    state.timeLeft = 60;
+    if (state.matchTimer) clearInterval(state.matchTimer);
+    state.matchTimer = setInterval(() => {
+        state.timeLeft--;
+        if (state.timeLeft <= 0) {
+            stopMatchTimer();
+            handleMatchTimeout();
+        }
+        render();
+    }, 1000);
+}
+
+function stopMatchTimer() {
+    if (state.matchTimer) clearInterval(state.matchTimer);
+    state.matchTimer = null;
+}
+
+function handleMatchTimeout() {
+    alert('Time is up! You must match all pairs within 60 seconds.');
+    state.currentMatchPool = null;
+    navigateTo('games-select');
+}
+
+function startMatchingGame(levelNum) {
+    if (!state.imageWords) {
+        alert('Data still loading, please wait a moment.');
+        return;
+    }
+    currentGameLevel = levelNum;
+    state.selectedGameTopic = `Matching Level ${levelNum}`;
+    
+    // Pick 7 words based on level
+    const wordsPerLevel = 7;
+    const startIndex = (levelNum - 1) * wordsPerLevel;
+    let pool = [];
+    for (let i = 0; i < wordsPerLevel; i++) {
+        const wordData = state.imageWords[(startIndex + i) % state.imageWords.length];
+        pool.push(wordData);
+    }
+    
+    matchingPairs = pool.map(w => ({ id: w.id, en: w.word, lt: w.lt }));
+    matchedIds = [];
+    selectedEnglish = null;
+    selectedLithuanian = null;
+    state.currentMatchPool = null; 
+    
+    state.view = 'matching-game';
+    startMatchTimer();
+    render();
+}
+
+function renderMatchingGame(container) {
+    if (!state.currentMatchPool) {
+        state.currentMatchPool = {
+            en: [...matchingPairs].sort(() => 0.5 - Math.random()),
+            lt: [...matchingPairs].sort(() => 0.5 - Math.random())
+        };
+    }
+
+    container.innerHTML = `
+        <div class="d-flex justify-content-between mb-4 align-items-center">
+            <div>
+                <h4 class="mb-0 fw-bold">${state.selectedGameTopic}</h4>
+                <div class="badge ${state.timeLeft < 10 ? 'bg-danger' : 'bg-dark'} mt-2 fs-6">⏱️ ${state.timeLeft}s</div>
+            </div>
+            <button class="btn btn-sm btn-outline-secondary" onclick="stopMatchTimer(); state.currentMatchPool=null; navigateTo('games-select')">Exit</button>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-6">
+                <h6 class="text-center text-muted mb-3">English</h6>
+                <div class="d-flex flex-column gap-3">
+                    ${state.currentMatchPool.en.map(pair => {
+                        const isMatched = matchedIds.includes(pair.id);
+                        const isSelected = selectedEnglish === pair.id;
+                        return `
+                            <div class="card p-3 text-center shadow-sm border-2 ${isMatched ? 'bg-success text-white border-success' : isSelected ? 'border-primary bg-primary bg-opacity-10' : 'bg-white'}"
+                                 style="cursor: ${isMatched ? 'default' : 'pointer'}; min-height: 60px; transition: 0.2s;"
+                                 onclick="${isMatched ? '' : `selectMatch('en', ${pair.id})`}">
+                                <h6 class="mb-0">${pair.en}</h6>
+                            </div>`;
+                    }).join('')}
+                </div>
+            </div>
+            
+            <div class="col-6">
+                <h6 class="text-center text-muted mb-3">Lithuanian</h6>
+                <div class="d-flex flex-column gap-3">
+                    ${state.currentMatchPool.lt.map(pair => {
+                        const isMatched = matchedIds.includes(pair.id);
+                        const isSelected = selectedLithuanian === pair.id;
+                        return `
+                            <div class="card p-3 text-center shadow-sm border-2 ${isMatched ? 'bg-success text-white border-success' : isSelected ? 'border-primary bg-primary bg-opacity-10' : 'bg-white'}"
+                                 style="cursor: ${isMatched ? 'default' : 'pointer'}; min-height: 60px; transition: 0.2s;"
+                                 onclick="${isMatched ? '' : `selectMatch('lt', ${pair.id})`}">
+                                <h6 class="mb-0">${pair.lt}</h6>
+                            </div>`;
+                    }).join('')}
+                </div>
+            </div>
+        </div>
+        
+        ${matchedIds.length === 7 ? `
+            <div class="text-center mt-5">
+                <div class="alert alert-success py-4 shadow-sm mb-4">
+                    <h3>🌟 Excellent! 🌟</h3>
+                    <p class="mb-0">You matched all pairs perfectly!</p>
+                </div>
+                <button class="btn btn-primary btn-lg px-5" onclick="completeMatchingGame()">Continue</button>
+            </div>
+        ` : ''}
+    `;
+}
+
+function selectMatch(type, id) {
+    if (type === 'en') selectedEnglish = id;
+    if (type === 'lt') selectedLithuanian = id;
+    
+    if (selectedEnglish !== null && selectedLithuanian !== null) {
+        if (selectedEnglish === selectedLithuanian) {
+            matchedIds.push(selectedEnglish);
+            if (matchedIds.length === 7) stopMatchTimer();
+            const wordObj = matchingPairs.find(p => p.id === selectedEnglish);
+            playAudio(wordObj.en);
+        }
+        selectedEnglish = null;
+        selectedLithuanian = null;
+    }
+    render();
+}
+
+function completeMatchingGame() {
+    const scoreKey = `match_level_${currentGameLevel}`;
+    state.progress[scoreKey] = true;
+    localStorage.setItem('lt_progress', JSON.stringify(state.progress));
+    state.currentMatchPool = null;
+    navigateTo('games-select');
+}
+
+let imageGameQuestions = [];
+let currentGameLevel = 1;
+let selectedOptionId = null;
+
+function startImageLevel(levelNum) {
+    currentGameLevel = levelNum;
+    state.selectedGameTopic = `Level ${levelNum}`;
+    const byTopic = {};
+    state.imageWords.forEach(w => {
+        if (!byTopic[w.topic]) byTopic[w.topic] = [];
+        byTopic[w.topic].push(w);
+    });
+    const topics = Object.keys(byTopic);
+    let questionsPool = [];
+    topics.forEach(topic => {
+        const wordsInTopic = byTopic[topic];
+        const offset = (levelNum - 1) * 2;
+        questionsPool.push(wordsInTopic[offset % wordsInTopic.length]);
+        questionsPool.push(wordsInTopic[(offset + 1) % wordsInTopic.length]);
+    });
+    questionsPool = questionsPool.slice(0, 12).sort(() => 0.5 - Math.random());
+    imageGameQuestions = questionsPool.map(correctWord => ({
+        correct: correctWord,
+        options: [correctWord, ...state.imageWords.filter(w => w.id !== correctWord.id).sort(() => 0.5 - Math.random()).slice(0, 3)].sort(() => 0.5 - Math.random())
+    }));
+    state.currentQuestionIdx = 0;
+    state.answers = [];
+    state.view = 'image-game';
+    render();
+}
+
+function renderImageGame(container) {
+    const question = imageGameQuestions[state.currentQuestionIdx];
+    container.innerHTML = `
+        <div class="d-flex justify-content-between mb-3 align-items-center">
+            <span class="fw-bold">${state.selectedGameTopic}</span>
+            <span class="badge bg-info">Question ${state.currentQuestionIdx + 1}/12</span>
+        </div>
+        <div class="row row-cols-2 g-4 mb-5">
+            ${question.options.map(opt => {
+                const isSelected = selectedOptionId === opt.id;
+                return `
+                <div class="col">
+                    <div class="card h-100 border-3 shadow-sm ${isSelected ? 'border-primary bg-primary bg-opacity-10' : 'border-transparent'}" 
+                         style="cursor: pointer; transition: 0.2s;"
+                         onclick="selectOption(${opt.id})">
+                        <div class="bg-light d-flex align-items-center justify-content-center" style="height: 180px;">
+                            <img src="/img/all/${opt.word}.png" class="img-fluid" style="max-height: 100%;" onerror="this.src='/img/all/${opt.word}.jpeg'; this.onerror=null;">
+                        </div>
+                        <div class="card-body p-2 text-center"><h6>${opt.word}</h6></div>
+                    </div>
+                </div>`}).join('')}
+        </div>
+        <div class="bg-light p-4 rounded text-center mb-4">
+            <p class="text-muted mb-1">Which one is:</p>
+            <div class="d-flex align-items-center justify-content-center gap-3">
+                <h1 class="display-4 fw-bold text-primary mb-0">${question.correct.lt}</h1>
+                <button class="btn btn-outline-primary btn-lg rounded-circle" onclick="playAudio('${question.correct.word}')">
+                    🔊
+                </button>
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary btn-lg px-5 shadow-sm" 
+                    id="submit-btn" 
+                    ${selectedOptionId === null ? 'disabled' : ''} 
+                    onclick="checkSelectedAnswer()">
+                Check Answer
+            </button>
+        </div>
+    `;
+}
+
+function selectOption(id) {
+    selectedOptionId = id;
+    render();
+}
+
+function checkSelectedAnswer() {
+    const question = imageGameQuestions[state.currentQuestionIdx];
+    const isCorrect = selectedOptionId === question.correct.id;
+    selectedOptionId = null; // Reset for next
+    submitImageAnswer(isCorrect);
+}
+
+function submitImageAnswer(isCorrect) {
+    state.answers.push(isCorrect);
+    
+    // Feedback overlay
+    const overlay = document.createElement('div');
+    overlay.className = `fixed-top vh-100 d-flex align-items-center justify-content-center ${isCorrect ? 'bg-success' : 'bg-danger'} text-white`;
+    overlay.style.opacity = '0.9';
+    overlay.style.zIndex = '9999';
+    overlay.innerHTML = `
+        <div class="text-center">
+            <h1 class="display-1">${isCorrect ? 'Correct! ✓' : 'Wrong! ✗'}</h1>
+            ${!isCorrect ? `<p class="fs-4 mt-3">The correct answer was <strong>${imageGameQuestions[state.currentQuestionIdx].correct.word}</strong></p>` : ''}
+        </div>
+    `;
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+        overlay.remove();
+        if (state.currentQuestionIdx < 11) {
+            state.currentQuestionIdx++;
+            render();
+        } else {
+            renderImageReview();
+        }
+    }, 1200);
+}
+
+function renderImageReview() {
+    const score = state.answers.filter(a => a).length;
+    const percentage = Math.round((score / 12) * 100);
+    const scoreKey = `game_level_${currentGameLevel}`;
+    if (!state.progress[scoreKey] || percentage > state.progress[scoreKey]) {
+        state.progress[scoreKey] = percentage;
+        localStorage.setItem('lt_progress', JSON.stringify(state.progress));
+    }
+    state.view = 'review';
+    render();
+}
+
+function renderReview(container) {
+    const score = state.answers.filter(a => a).length;
+    const total = state.answers.length;
+    const percentage = Math.round((score / total) * 100);
+    
+    // Determine context
+    const isImageGame = state.view === 'review' && state.selectedGameTopic && state.selectedGameTopic.startsWith('Level');
+    const title = isImageGame ? state.selectedGameTopic : 'Lesson Complete';
+    const backView = isImageGame ? 'games-select' : 'roadmap';
+    const backText = isImageGame ? 'Back to Levels' : 'Back to Learning';
+    
+    container.innerHTML = `
+        <div class="text-center py-5">
+            <h2>${title}</h2>
+            <img src="/img/motifs/tulip.jpeg" alt="" class="review-tulip mb-2">
+            <h3 class="display-2">${percentage}%</h3>
+            <p class="lead">${score} out of ${total} correct</p>
+            <div class="d-flex gap-3 justify-content-center">
+                <button class="btn btn-outline-secondary btn-lg" onclick="navigateTo('${backView}')">${backText}</button>
+                ${isImageGame ? `<button class="btn btn-primary btn-lg" onclick="startImageLevel(${currentGameLevel})">Retry Level</button>` : ''}
+            </div>
+        </div>
+    `;
+}
+
+
+let expandedSectionIdx = null;
+let expandedGameType = null;
+
+function renderRoadmap(container) {
+    if (!state.dictionary || !state.dictionary.sections) {
+        container.innerHTML = `<div class="text-center py-5"><p class="text-muted">Loading learning path...</p></div>`;
+        return;
+    }
+    
+    let html = `
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="mb-0 fw-bold">Learning Path</h4>
+            <div class="badge bg-warning text-dark p-2 fs-6">💎 ${state.credits} Credits</div>
+        </div>
+    `;
+    
+    state.dictionary.sections.forEach((sec, sIdx) => {
+        // A section is unlocked if:
+        // 1. It is the first one
+        // 2. The previous section is complete
+        // 3. It was explicitly unlocked with credits
+        let isNaturallyUnlocked = sIdx === 0;
+        if (sIdx > 0) {
+            const prevSec = state.dictionary.sections[sIdx - 1];
+            const lastLvlIdx = prevSec.levels.length - 1;
+            isNaturallyUnlocked = !!state.progress[`${sIdx-1}-${lastLvlIdx}`];
+        }
+        
+        const isCreditUnlocked = state.unlockedSections.includes(sIdx);
+        const isUnlocked = isNaturallyUnlocked || isCreditUnlocked;
+
+        const isExpanded = expandedSectionIdx === sIdx;
+
+        html += `
+            <div class="card border-0 shadow-sm mb-3 overflow-hidden">
+                <div class="card-header bg-white p-3 d-flex justify-content-between align-items-center" 
+                     style="cursor: pointer;"
+                     onclick="${isUnlocked ? `toggleSection(${sIdx})` : `attemptUnlock(${sIdx})`}">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="fs-3">${isUnlocked ? '📖' : '🔒'}</div>
+                        <div>
+                            <h6 class="mb-0 fw-bold ${isUnlocked ? 'text-primary' : 'text-muted'}">${sec.topic}</h6>
+                            <small class="text-muted">${sec.levels.length} Lessons</small>
+                        </div>
+                    </div>
+                    <div class="text-muted">${isExpanded ? '▲' : '▼'}</div>
+                </div>
+                
+                ${isExpanded ? `
+                    <div class="card-body bg-light p-3">
+                        <div class="d-flex flex-column gap-2">
+                            ${sec.levels.map((lvl, lIdx) => {
+                                const isDone = !!state.progress[`${sIdx}-${lIdx}`];
+                                // Level is unlocked if it is the first or if previous level in section is done
+                                const isLvlUnlocked = lIdx === 0 || !!state.progress[`${sIdx}-${lIdx-1}`];
+                                
+                                return `
+                                    <button class="btn ${isDone ? 'btn-success' : isLvlUnlocked ? 'btn-outline-primary' : 'btn-outline-secondary'} text-start d-flex align-items-center justify-content-between p-3"
+                                            onclick="${isLvlUnlocked ? `startLevel(${sIdx}, ${lIdx})` : ''}"
+                                            ${isLvlUnlocked ? '' : 'disabled'}>
+                                        <span>Level ${lIdx + 1}: ${lvl.title}</span>
+                                        <span>${isDone ? '✅' : isLvlUnlocked ? '▶️' : '🔒'}</span>
+                                    </button>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html;
+}
+
+
+function attemptUnlock(sIdx) {
+    if (confirm(`Unlock "${state.dictionary.sections[sIdx].topic}" for 10 credits?`)) {
+        if (state.credits >= 10) {
+            state.credits -= 10;
+            state.unlockedSections.push(sIdx);
+            localStorage.setItem('lt_credits', state.credits);
+            localStorage.setItem('lt_unlocked_sections', JSON.stringify(state.unlockedSections));
+            render();
+        } else {
+            alert('Not enough credits! Complete lessons to earn more.');
+        }
+    }
+}
+
+function toggleSection(idx) {
+    if (expandedSectionIdx === idx) expandedSectionIdx = null;
+    else expandedSectionIdx = idx;
+    render();
+}
+
+let selectedLessonOption = null;
+
+function startLevel(sIdx, lIdx) {
+    state.sectionIdx = sIdx;
+    state.levelIdx = lIdx;
+    state.currentQuestionIdx = 0;
+    state.answers = [];
+    builtSentence = [];
+    selectedLessonOption = null;
+    state.selectedGameTopic = null; // Clear game context
+    state.view = 'game';
+    render();
+}
+
+function renderGame(container) {
+    const question = currentLessonQuestion();
+    if (question.type === 'sorting') {
+        renderSentenceTiles(container, {
+            prompt: question.translation,
+            progress: `Question ${state.currentQuestionIdx + 1}/${state.dictionary.sections[state.sectionIdx].levels[state.levelIdx].sentences.length}`,
+            tiles: question.scrambled,
+            quitView: 'roadmap',
+            checkAction: 'checkLessonOrder()'
+        });
+        return;
+    }
+    container.innerHTML = `
+        <div class="text-center py-5">
+            <h3>${escapeHtml(question.text.replace('_______', '____'))}</h3>
+            <p class="text-muted">${escapeHtml(question.translation)}</p>
+            <div class="d-grid gap-2">
+                ${question.options.map((option, index) => {
+                    const selected = selectedLessonOption === index;
+                    return `<button type="button" class="btn ${selected ? 'btn-primary' : 'btn-light border'}"
+                        aria-pressed="${selected}" onclick="selectLessonOption(${index})">${escapeHtml(option)}</button>`;
+                }).join('')}
+            </div>
+            <button type="button" class="btn btn-success mt-3" onclick="submitLessonChoice()"
+                ${selectedLessonOption === null ? 'disabled' : ''}>Submit Answer</button>
+        </div>
+    `;
+}
+
+function checkLessonOrder() {
+    const question = currentLessonQuestion();
+    submitLessonAnswer(
+        matchesTileAnswer(builtSentence, question.correctOrder, question.acceptedOrders),
+        question.correctOrder.join(' ')
+    );
+}
+
+function selectLessonOption(index) {
+    if (state.answers.length > state.currentQuestionIdx) return;
+    selectedLessonOption = index;
+    render();
+}
+
+function submitLessonChoice() {
+    if (selectedLessonOption === null || state.answers.length > state.currentQuestionIdx) return;
+    const question = currentLessonQuestion();
+    submitLessonAnswer(question.options[selectedLessonOption] === question.missing, question.missing);
+}
+
+function submitLessonAnswer(isCorrect, correct) {
+    state.answers.push(isCorrect);
+    
+    const overlay = document.createElement('div');
+    overlay.className = `fixed-top vh-100 d-flex align-items-center justify-content-center ${isCorrect ? 'bg-success' : 'bg-danger'} text-white`;
+    overlay.style.opacity = '0.9';
+    overlay.style.zIndex = '9999';
+    overlay.innerHTML = `
+        <div class="text-center">
+            <h1 class="display-1">${isCorrect ? 'Correct! ✓' : 'Oops! ✗'}</h1>
+            ${!isCorrect ? `<p class="fs-4 mt-3">Correct answer: ${escapeHtml(correct)}</p>` : ''}
+        </div>
+    `;
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+        overlay.remove();
+        builtSentence = [];
+        selectedLessonOption = null;
+        const level = state.dictionary.sections[state.sectionIdx].levels[state.levelIdx];
+        if (state.currentQuestionIdx < level.sentences.length - 1) {
+            state.currentQuestionIdx++;
+            render();
+        } else {
+            state.progress[`${state.sectionIdx}-${state.levelIdx}`] = true;
+            localStorage.setItem('lt_progress', JSON.stringify(state.progress));
+            state.view = 'review';
+            render();
+        }
+    }, 1200);
+}
+
+function renderProfile(container) {
+    const completedLevels = Object.keys(state.progress).filter(k => state.progress[k] && !k.startsWith('game_level')).length;
+    const totalLevels = state.dictionary ? 
+        state.dictionary.sections.reduce((sum, sec) => sum + (sec.levels ? sec.levels.length : 0), 0) : 0;
+    const progressPercentage = totalLevels > 0 ? Math.round((completedLevels / totalLevels) * 100) : 0;
+    
+    // Calculate Game Stats
+    const gameLevels = Array.from({length: 10}, (_, i) => i + 1);
+    const completedImageGames = gameLevels.filter(n => state.progress[`game_level_${n}`] !== undefined).length;
+    const completedMatchGames = gameLevels.filter(n => state.progress[`match_level_${n}`] !== undefined).length;
+
+    container.innerHTML = `
+        <div class="py-4">
+            <h2 class="mb-4 fw-bold text-center">Your Profile</h2>
+            
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-4">
+                                <h5 class="card-title mb-0 text-primary">📊 Stats & Progress</h5>
+                                <div class="badge bg-warning text-dark p-2">💎 ${state.credits} Credits</div>
+                            </div>
+                            
+                            <!-- Learning Progress -->
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted">Learning Path</span>
+                                    <span class="fw-bold">${completedLevels}/${totalLevels}</span>
+                                </div>
+                                <div class="progress" style="height: 12px;">
+                                    <div class="progress-bar bg-success" style="width: ${progressPercentage}%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Image Games -->
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted">Image Association</span>
+                                    <span class="fw-bold">${completedImageGames}/10</span>
+                                </div>
+                                <div class="progress" style="height: 12px;">
+                                    <div class="progress-bar bg-primary" style="width: ${(completedImageGames/10)*100}%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Match Games -->
+                            <div class="mb-2">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted">Word Pair Matching</span>
+                                    <span class="fw-bold">${completedMatchGames}/10</span>
+                                </div>
+                                <div class="progress" style="height: 12px;">
+                                    <div class="progress-bar bg-success" style="width: ${(completedMatchGames/10)*100}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <h5 class="card-title mb-4">👤 Settings</h5>
+                            <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" id="userNameInput" value="${escapeHtml(state.user.name)}">
+                            </div>
+                            <button class="btn btn-primary w-100 mb-3" onclick="updateUserName()">Save Name</button>
+                            <hr>
+                            <h5 class="card-title mb-3">🗣️ Voice Preference</h5>
+                            <div class="btn-group w-100 mb-3">
+                                <input type="radio" class="btn-check" name="voice" id="voiceMale" ${state.user.voice === 'male' ? 'checked' : ''} onclick="updateVoice('male')">
+                                <label class="btn btn-outline-primary" for="voiceMale">Male</label>
+                                <input type="radio" class="btn-check" name="voice" id="voiceFemale" ${state.user.voice === 'female' ? 'checked' : ''} onclick="updateVoice('female')">
+                                <label class="btn btn-outline-primary" for="voiceFemale">Female</label>
+                            </div>
+                            <hr>
+                            <button class="btn btn-outline-danger btn-sm w-100" onclick="resetProgress()">
+                                Reset All Progress
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-secondary" onclick="navigateTo('landing')">Back to Home</button>
+            </div>
+        </div>
+    `;
+}
+
+
+function updateVoice(voice) {
+    state.user.voice = voice;
+    localStorage.setItem('userVoice', voice);
+    render();
+}
+
+function updateUserName() {
+    const name = document.getElementById('userNameInput').value.trim();
+    if (name) {
+        state.user.name = name;
+        localStorage.setItem('userName', name);
+        alert('Name updated!');
+        render();
+    }
+}
+
+function resetProgress() {
+    if (confirm('Are you sure? This will delete all your progress.')) {
+        localStorage.clear();
+        location.reload();
+    }
+}
+
+init();
+</script>
+</body>
+</html>
