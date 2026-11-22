@@ -85,3 +85,52 @@ body {
         width: clamp(240px, 32vw, 360px);
     }
 }
+
+
+.profile-illustration {
+    display: none;
+    width: clamp(84px, 12vw, 160px);
+    height: auto;
+    margin-inline: auto;
+}
+
+.app-layout:has(.profile-content) .profile-illustration {
+    display: block;
+    margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+    .app-layout:has(.profile-content) {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .app-layout:has(.profile-content) .profile-illustration {
+        margin: 0;
+    }
+}
+
+body:has(.sodai-panel) {
+    min-height: 100vh;
+    background: linear-gradient(rgba(249, 247, 242, 0.48), rgba(249, 247, 242, 0.48)),
+                url("/img/generated/sodai.jpeg") center / cover no-repeat;
+}
+
+#app-viewport.sodai-panel {
+    background: rgba(255, 255, 255, 0.91);
+}
+
+.site-nav .btn {
+    --bs-btn-color: #35483f;
+    --bs-btn-bg: #e4e8df;
+    --bs-btn-border-color: #b9c4b6;
+    --bs-btn-hover-color: #26382e;
+    --bs-btn-hover-bg: #d7dfd2;
+    --bs-btn-hover-border-color: #a5b3a3;
+    --bs-btn-active-color: #26382e;
+    --bs-btn-active-bg: #cdd8ca;
+    --bs-btn-active-border-color: #a5b3a3;
+    --bs-btn-focus-shadow-rgb: 93, 113, 99;
+}

@@ -1,0 +1,261 @@
+[
+  {
+    "id": 1,
+    "topic": "Foundations & Greetings",
+    "en": "Hello, how are you?",
+    "lt": "Labas, kaip tau sekasi?",
+    "words": [
+      "Labas,",
+      "kaip",
+      "tau",
+      "sekasi?"
+    ],
+    "audioFile": "phrase-001.mp3"
+  },
+  {
+    "id": 2,
+    "topic": "Foundations & Greetings",
+    "en": "My name is Simas.",
+    "lt": "Mano vardas yra Simas",
+    "words": [
+      "Mano",
+      "vardas",
+      "yra",
+      "Simas"
+    ],
+    "audioFile": "phrase-002.mp3"
+  },
+  {
+    "id": 3,
+    "topic": "Foundations & Greetings",
+    "en": "I am very happy.",
+    "lt": "Aš esu labai laimingas",
+    "words": [
+      "Aš",
+      "esu",
+      "labai",
+      "laimingas"
+    ],
+    "audioFile": "phrase-003.mp3"
+  },
+  {
+    "id": 4,
+    "topic": "Numbers & Time",
+    "en": "I have two sisters.",
+    "lt": "Aš turiu dvi seseris",
+    "words": [
+      "Aš",
+      "turiu",
+      "dvi",
+      "seseris"
+    ],
+    "audioFile": "phrase-004.mp3"
+  },
+  {
+    "id": 5,
+    "topic": "Numbers & Time",
+    "en": "What time is it now?",
+    "lt": "Kiek dabar yra valandų?",
+    "words": [
+      "Kiek",
+      "dabar",
+      "yra",
+      "valandų?"
+    ],
+    "audioFile": "phrase-005.mp3"
+  },
+  {
+    "id": 6,
+    "topic": "Numbers & Time",
+    "en": "Today is Monday.",
+    "lt": "Šiandien yra pirmadienis",
+    "words": [
+      "Šiandien",
+      "yra",
+      "pirmadienis"
+    ],
+    "audioFile": "phrase-006.mp3"
+  },
+  {
+    "id": 7,
+    "topic": "Survival & Directions",
+    "en": "Where is the pharmacy?",
+    "lt": "Kur yra vaistinė?",
+    "words": [
+      "Kur",
+      "yra",
+      "vaistinė?"
+    ],
+    "audioFile": "phrase-007.mp3"
+  },
+  {
+    "id": 8,
+    "topic": "Survival & Directions",
+    "en": "I am lost.",
+    "lt": "Aš pasiklydau",
+    "words": [
+      "Aš",
+      "pasiklydau"
+    ],
+    "audioFile": "phrase-008.mp3"
+  },
+  {
+    "id": 9,
+    "topic": "Survival & Directions",
+    "en": "Help me, please.",
+    "lt": "Padėkite man, prašau",
+    "words": [
+      "Padėkite",
+      "man,",
+      "prašau"
+    ],
+    "audioFile": "phrase-009.mp3"
+  },
+  {
+    "id": 10,
+    "topic": "The Baltic Table (Food)",
+    "en": "I want cold beet soup.",
+    "lt": "Aš noriu šaltibarščių",
+    "words": [
+      "Aš",
+      "noriu",
+      "šaltibarščių"
+    ],
+    "audioFile": "phrase-010.mp3"
+  },
+  {
+    "id": 11,
+    "topic": "The Baltic Table (Food)",
+    "en": "Can I have the bill?",
+    "lt": "Ar galiu gauti sąskaitą?",
+    "words": [
+      "Ar",
+      "galiu",
+      "gauti",
+      "sąskaitą?"
+    ],
+    "audioFile": "phrase-011.mp3"
+  },
+  {
+    "id": 12,
+    "topic": "The Baltic Table (Food)",
+    "en": "This bread is fresh.",
+    "lt": "Ši duona yra šviežia",
+    "words": [
+      "Ši",
+      "duona",
+      "yra",
+      "šviežia"
+    ],
+    "audioFile": "phrase-012.mp3"
+  },
+  {
+    "id": 13,
+    "topic": "On the Move (Travel)",
+    "en": "When is the bus?",
+    "lt": "Kada bus autobusas?",
+    "words": [
+      "Kada",
+      "bus",
+      "autobusas?"
+    ],
+    "audioFile": "phrase-013.mp3"
+  },
+  {
+    "id": 14,
+    "topic": "On the Move (Travel)",
+    "en": "I need a map.",
+    "lt": "Man reikia žemėlapio",
+    "words": [
+      "Man",
+      "reikia",
+      "žemėlapio"
+    ],
+    "audioFile": "phrase-014.mp3"
+  },
+  {
+    "id": 15,
+    "topic": "On the Move (Travel)",
+    "en": "Stop here, please.",
+    "lt": "Sustokite čia, prašau",
+    "words": [
+      "Sustokite",
+      "čia,",
+      "prašau"
+    ],
+    "audioFile": "phrase-015.mp3"
+  },
+  {
+    "id": 16,
+    "topic": "Daily Life",
+    "en": "I go to work.",
+    "lt": "Aš einu į darbą",
+    "words": [
+      "Aš",
+      "einu",
+      "į",
+      "darbą"
+    ],
+    "audioFile": "phrase-016.mp3"
+  },
+  {
+    "id": 17,
+    "topic": "Daily Life",
+    "en": "She reads a book.",
+    "lt": "Ji skaito knygą",
+    "words": [
+      "Ji",
+      "skaito",
+      "knygą"
+    ],
+    "audioFile": "phrase-017.mp3"
+  },
+  {
+    "id": 18,
+    "topic": "Daily Life",
+    "en": "We watch television.",
+    "lt": "Mes žiūrime televiziją",
+    "words": [
+      "Mes",
+      "žiūrime",
+      "televiziją"
+    ],
+    "audioFile": "phrase-018.mp3"
+  },
+  {
+    "id": 19,
+    "topic": "Around the Home",
+    "en": "The cat is sleeping.",
+    "lt": "Katė dabar miega",
+    "words": [
+      "Katė",
+      "dabar",
+      "miega"
+    ],
+    "audioFile": "phrase-019.mp3"
+  },
+  {
+    "id": 20,
+    "topic": "Around the Home",
+    "en": "Clean the room.",
+    "lt": "Sutvarkyk savo kambarį",
+    "words": [
+      "Sutvarkyk",
+      "savo",
+      "kambarį"
+    ],
+    "audioFile": "phrase-020.mp3"
+  },
+  {
+    "id": 21,
+    "topic": "Around the Home",
+    "en": "Turn off the light.",
+    "lt": "Išjunk šviesą, prašau",
+    "words": [
+      "Išjunk",
+      "šviesą,",
+      "prašau"
+    ],
+    "audioFile": "phrase-021.mp3"
+  }
+]

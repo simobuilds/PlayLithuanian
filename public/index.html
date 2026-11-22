@@ -29,7 +29,7 @@
     <!-- Navigation Header -->
     <header class="d-flex flex-wrap gap-2 justify-content-between align-items-center mb-4">
         <h2 class="fw-bold text-primary" style="cursor: pointer;" onclick="navigateTo('landing')">Play Lithuanian</h2>
-                <nav class="d-flex gap-3 align-items-center">
+                <nav class="site-nav d-flex gap-3 align-items-center">
             <button class="btn btn-sm btn-outline-primary" onclick="navigateTo('landing')">Home</button>
             <button class="btn btn-sm btn-outline-primary" onclick="navigateTo('roadmap')">Learn</button>
             <button class="btn btn-sm btn-outline-primary" onclick="navigateTo('games-select')">Games</button>
@@ -38,8 +38,10 @@
 
     </header>
 
-    <div id="app-viewport" class="glass-panel p-4 shadow-sm min-vh-75">
-        </div>
+    <div class="app-layout">
+        <div id="app-viewport" class="glass-panel p-4 shadow-sm min-vh-75"></div>
+        <img src="/img/generated/lentele-cropped.jpeg" alt="" class="profile-illustration" width="354" height="736" loading="lazy">
+    </div>
 </div>
 
 <script>
@@ -123,6 +125,10 @@ async function init() {
 
 function render() {
     const viewport = document.getElementById('app-viewport');
+    viewport.className = 'glass-panel p-4 shadow-sm min-vh-75';
+    if (['landing', 'roadmap', 'games-select', 'profile'].includes(state.view)) {
+        viewport.className += ' sodai-panel';
+    }
     if (state.view === 'landing') renderLanding(viewport);
     else if (state.view === 'roadmap') renderRoadmap(viewport);
     else if (state.view === 'game') renderGame(viewport);
@@ -1046,11 +1052,11 @@ function renderProfile(container) {
     const completedMatchGames = gameLevels.filter(n => state.progress[`match_level_${n}`] !== undefined).length;
 
     container.innerHTML = `
-        <div class="py-4">
+        <div class="profile-content py-4">
             <h2 class="mb-4 fw-bold text-center">Your Profile</h2>
             
             <div class="row g-4 mb-5">
-                <div class="col-md-4">
+                <div class="col-lg-6">
                     <div class="card border-0 shadow-sm h-100">
                         <div class="card-body p-4">
                             <div class="d-flex justify-content-between align-items-start mb-4">
@@ -1094,7 +1100,7 @@ function renderProfile(container) {
                     </div>
                 </div>
                 
-                <div class="col-md-4">
+                <div class="col-lg-6">
                     <div class="card border-0 shadow-sm h-100">
                         <div class="card-body p-4">
                             <h5 class="card-title mb-4">👤 Settings</h5>
